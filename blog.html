@@ -1,1 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bubbly Modern Landing Page - Blog</title>
 
+<!-- Cute & Inviting Fredoka Font Setup -->
+<link href="https://googleapis.com" rel="stylesheet">
+
+<style>
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+ font-family:'Fredoka', sans-serif;
+}
+body{
+ min-height:100vh;
+ background: linear-gradient(135deg,#fff8ff,#f5f8ff,#fff7f9);
+ padding:30px;
+ overflow-x:hidden;
+}
+.container{
+ max-width:1500px;
+ margin:auto;
+}
+/* HEADER WITH GLASSMORPHISM */
+.header{
+ height:90px;
+ padding:0 35px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ background:rgba(255,255,255,.35);
+ backdrop-filter:blur(25px);
+ border-radius:999px;
+ border:1px solid rgba(255,255,255,.7);
+ box-shadow:
+ inset 0 2px 4px rgba(255,255,255,.9),
+ 0 20px 50px rgba(100,100,255,.08);
+}
+.logo{
+ font-size:2.2rem;
+ font-weight:700;
+ color:#444;
+ text-decoration: none;
+}
+/* SUB HEADER PANEL */
+.subheader{
+ margin-top:20px;
+ height:45px;
+ border-radius:999px;
+ background:rgba(255,255,255,.35);
+ backdrop-filter:blur(20px);
+}
+/* MAIN CONTENT SPLIT */
+.main{
+ display:flex;
+ gap:35px;
+ margin-top:40px;
+}
+/* SIDEBAR BUBBLES */
+.sidebar{
+ display:flex;
+ flex-direction:column;
+ gap:25px;
+}
+.bubble{
+ width:120px;
+ height:120px;
+ border-radius:50%;
+ background:rgba(255,255,255,.35);
+ backdrop-filter:blur(20px);
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ text-align: center;
+ font-size:1.15rem;
+ font-weight:600;
+ cursor:pointer;
+ transition:.4s;
+ box-shadow:0 15px 40px rgba(0,0,0,.08);
+ padding: 10px;
+ text-decoration:none;
+ color:inherit;
+}
+.bubble:hover{
+ transform:translateY(-8px) scale(1.05);
+}
+.bubble.active{
+ color:white;
+ background:linear-gradient(135deg,#7fd6ff,#ae7fff);
+ box-shadow:0 0 40px rgba(160,130,255,.5);
+ transform:scale(1.05);
+}
+.content{
+ flex:1;
+}
+
+/* BLOG LAYOUT ARCHITECTURE */
+.blog-vertical-stack {
+ display: flex;
+ flex-direction: column;
+ gap: 30px;
+}
+.blog-post-card {
+ background: rgba(255, 255, 255, 0.4);
+ backdrop-filter: blur(20px);
+ border-radius: 40px;
+ border: 1px solid rgba(255, 255, 255, 0.6);
+ box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+ overflow: hidden;
+ display: flex;
+ transition: transform 0.3s ease, box-shadow 0.3s ease;
+ cursor: pointer;
+}
+.blog-post-card:hover {
+ transform: translateY(-5px);
+ box-shadow: 0 25px 50px rgba(100, 100, 255, 0.1);
+}
+.blog-image-wrapper {
+ width: 35%;
+ height: 280px;
+ overflow: hidden;
+ position: relative;
+}
+.blog-image-wrapper img {
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+ transition: transform 0.5s ease;
+}
+.blog-post-card:hover .blog-image-wrapper img {
+ transform: scale(1.05);
+}
+.blog-info-wrapper {
+ width: 65%;
+ padding: 35px;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ gap: 12px;
+}
+.blog-badge {
+ align-self: flex-start;
+ background: linear-gradient(135deg, #7fd6ff, #ae7fff);
+ color: white;
+ padding: 6px 16px;
+ border-radius: 20px;
+ font-size: 0.9rem;
+ font-weight: 600;
+}
+.blog-title {
+ font-size: 1.8rem;
+ color: #444;
+ font-weight: 700;
+ line-height: 1.3;
+}
+.blog-excerpt {
+ font-size: 1.1rem;
+ color: #666;
+ line-height: 1.6;
+}
+.blog-date {
+ font-size: 0.95rem;
+ color: #999;
+ margin-top: 5px;
+}
+
+/* RESPONSIVE BREAKPOINTS */
+@media(max-width:1000px){
+ .main{
+ flex-direction:column;
+ }
+ .sidebar{
+ flex-direction:row;
+ justify-content: center;
+ }
+ .bubble{
+ width:90px;
+ height:90px;
+ font-size: 0.95rem;
+ }
+ .blog-post-card {
+ flex-direction: column;
+ }
+ .blog-image-wrapper {
+ width: 100%;
+ height: 220px;
+ }
+ .blog-info-wrapper {
+ width: 100%;
+ padding: 25px;
+ }
+}
+</style>
+</head>
+<body>
+<div class="container">
+ <!-- Header Navigation Section -->
+ <a href="vlogs.html" class="header">
+ <div class="logo">Home</div>
+ </a>
+ 
+ <!-- Accent Subheader -->
+ <div class="subheader"></div>
+ 
+ <!-- Main Content Workspace Layout -->
+ <div class="main">
+ <!-- Sidebar Navigation Buttons (Blog is Active) -->
+ <div class="sidebar">
+ <a class="bubble active" href="blog.html">Blog</a>
+ <a class="bubble" href="vlogs.html">Vlogs</a>
+ <a class="bubble" href="photos.html">Photos</a>
+ <a class="bubble" href="about.html">About Me</a>
+ </div>
+ 
+ <!-- Dashboard Media Feeds Wrapper Box -->
+ <div class="content">
+ <div class="blog-vertical-stack">
+ 
+ <!-- Blog Entry 1 -->
+ <div class="blog-post-card">
+ <div class="blog-image-wrapper">
+ <img src="https://unsplash.com" alt="Aesthetic setup">
+ </div>
+ <div class="blog-info-wrapper">
+ <span class="blog-badge">Lifestyle</span>
+ <h2 class="blog-title">My Morning Routine for a Productive and Cozy Day</h2>
+ <p class="blog-excerpt">Exploring how a slow morning, warm matcha latte, and targeted goal setting transformed my creative workflow this season...</p>
+ <span class="blog-date">June 21, 2026</span>
+ </div>
+ </div>
+
+ <!-- Blog Entry 2 -->
+ <div class="blog-post-card">
+ <div class="blog-image-wrapper">
+ <img src="https://unsplash.com" alt="Workspace station">
+ </div>
+ <div class="blog-info-wrapper">
+ <span class="blog-badge">Design</span>
+ <h2 class="blog-title">Behind the Scenes: Designing the Perfect Pastel Dashboard Template</h2>
+ <p class="blog-excerpt">A deep dive into working with CSS frosted glass layout mechanics, soft drop shadows, and picking color palettes that stay easy on the eyes...</p>
+ <span class="blog-date">June 18, 2026</span>
+ </div>
+ </div>
+
+ <!-- Blog Entry 3 -->
+ <div class="blog-post-card">
+ <div class="blog-image-wrapper">
+ <img src="https://unsplash.com" alt="Photography desk">
+ </div>
+ <div class="blog-info-wrapper">
+ <span class="blog-badge">Vibe Check</span>
+ <h2 class="blog-title">5 Creative Habits That Keeps My Inspiration Alive</h2>
+ <p class="blog-excerpt">When creative ruts happen, here are five low-stress micro-habits I practice every week to clean out mental blocks and keep making art...</p>
+ <span class="blog-date">June 14, 2026</span>
+ </div>
+ </div>
+
+ </div>
+ </div>
+ </div>
+</div>
+
+<script>
+// Since this page handles standard direct link routing, we only need the 3D card tilt script loaded here!
+document.addEventListener('DOMContentLoaded', () => {
+ const cards = document.querySelectorAll(".blog-post-card");
+ cards.forEach(card => {
+ card.addEventListener("mousemove", (e) => {
+ const rect = card.getBoundingClientRect();
+ const x = e.clientX - rect.left;
+ const y = e.clientY - rect.top;
+ const rotateX = (rect.height / 2 - y) / 30; // Softened sensitivity for wider blog cards
+ const rotateY = (x - rect.width / 2) / 30;
+ card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+ });
+ card.forEach && card.addEventListener("mouseleave", () => {
+ card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
+ });
+ });
+});
+</script>
+</body>
+</html>
