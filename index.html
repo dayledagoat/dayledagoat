@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dayle's Website!</title>
+<title>Bubbly Modern Landing Page</title>
 
 <!-- Nunito Font -->
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://googleapis.com" rel="stylesheet">
 
 <style>
 *{
@@ -54,10 +54,11 @@ body{
     display:flex;
     align-items:center;
     gap:20px;
+    flex-shrink: 0; /* Prevents the search and profile elements from stretching out */
 }
 
 .search{
-    width:260px;
+    width:260px; /* Locked down width */
     height:55px;
     border:none;
     outline:none;
@@ -152,17 +153,17 @@ body{
     border-radius:40px;
     height:260px;
     box-shadow:0 20px 50px rgba(0,0,0,.1);
-    transition:.3s transform ease; /* Controlled smooth return on mouseleave */
+    cursor:pointer;
 }
 
 .card img{
     width:100%;
     height:100%;
     object-fit:cover;
-    pointer-events: none; /* Prevents image from blocking cursor math */
+    pointer-events: none; /* Keeps 3D cursor tracking flawless */
 }
 
-/* VIDEO PLAY BUTTON */
+/* VIDEO PLAY BUTTON Overlay */
 .play{
     position:absolute;
     top:50%;
@@ -182,7 +183,6 @@ body{
     pointer-events: none; 
 }
 
-/* Modifying your CSS to target hover directly on the card component */
 .card:hover .play {
     transform:translate(-50%,-50%) scale(1.2);
     box-shadow: 0 0 30px rgba(255,255,255,0.6);
@@ -215,7 +215,78 @@ body{
     transform:scale(1.1);
 }
 
-/* RESPONSIVE LAYOUT BREAKPOINTS */
+/* VIDEO POPUP MODAL STYLING */
+/* Forces complete concealment unless explicitly triggered */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(15px);
+    display: flex !important; /* Forces centered positioning logic */
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    opacity: 0 !important; 
+    pointer-events: none !important; 
+    visibility: hidden !important;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* Activated via JS */
+.modal-overlay.open {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+    transform: scale(0.8);
+    transition: transform 0.4s ease;
+}
+
+.modal-overlay.open .modal-content {
+    transform: scale(1);
+}
+
+.modal-content video {
+    width: 100%;
+    display: block;
+    background: #000;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.8rem;
+    line-height: 40px;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(90deg);
+}
+
+/* RESPONSIVE BREAKPOINTS */
 @media(max-width:1000px){
     .video-row, .gallery{
         grid-template-columns:1fr;
@@ -237,9 +308,9 @@ body{
 
 <div class="container">
 
-    <!-- Header Navigation -->
+    <!-- Header Navigation Section -->
     <div class="header">
-        <div class="logo">Welcome!</div>
+        <div class="logo">Home</div>
         <div class="right-header">
             <input class="search" placeholder="Search...">
             <div class="profile"></div>
@@ -249,31 +320,31 @@ body{
     <!-- Accent Subheader -->
     <div class="subheader"></div>
 
-    <!-- Main Workspace Layout -->
+    <!-- Main Content Workspace Layout -->
     <div class="main">
 
         <!-- Sidebar Navigation Buttons -->
         <div class="sidebar">
             <div class="bubble active">Blog</div>
-            <div class="bubble">Videos!</div>
-            <div class="bubble">Pics!</div>
+            <div class="bubble">Vlogs</div>
+            <div class="bubble">Photos</div>
         </div>
 
         <!-- Dashboard Media Feeds -->
         <div class="content">
 
-            <!-- Video Row Section -->
+            <!-- Video Cards Section with sample videos linked -->
             <div class="video-row">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200" alt="Video cover thumbnail">
+                <div class="card" data-video="https://w3schools.com">
+                    <img src="https://unsplash.com" alt="Video cover thumbnail">
                     <div class="play">▶</div>
                 </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200" alt="Video cover thumbnail">
+                <div class="card" data-video="https://w3schools.com">
+                    <img src="https://unsplash.com" alt="Video cover thumbnail">
                     <div class="play">▶</div>
                 </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200" alt="Video cover thumbnail">
+                <div class="card" data-video="https://w3schools.com">
+                    <img src="https://unsplash.com" alt="Video cover thumbnail">
                     <div class="play">▶</div>
                 </div>
             </div>
@@ -281,17 +352,25 @@ body{
             <!-- Photo Gallery Section -->
             <div class="gallery">
                 <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200" alt="Gallery sample thumbnail">
+                    <img src="https://unsplash.com" alt="Gallery thumbnail">
                 </div>
                 <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=1200" alt="Gallery sample thumbnail">
+                    <img src="https://unsplash.com" alt="Gallery thumbnail">
                 </div>
                 <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200" alt="Gallery sample thumbnail">
+                    <img src="https://unsplash.com" alt="Gallery thumbnail">
                 </div>
             </div>
 
         </div>
+    </div>
+</div>
+
+<!-- Video Popup Overlay Shell Container -->
+<div id="videoModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <video id="modalPlayer" controls></video>
     </div>
 </div>
 
@@ -317,7 +396,6 @@ document.querySelectorAll(".card").forEach(card => {
         const rotateX = (rect.height / 2 - y) / 10;
         const rotateY = (x - rect.width / 2) / 10;
 
-        // Keeps your exact original 3D scale and transition mechanics
         card.style.transform = `
             perspective(1000px)
             rotateX(${rotateX}deg)
@@ -339,30 +417,6 @@ setInterval(() => {
     angle += 0.02;
     profile.style.transform = `translateY(${Math.sin(angle) * 6}px)`;
 }, 16);
-</script>
 
-</body>
-</html>
-<div id="videoModal" class="modal-overlay">
-    <div class="modal-content">
-        <button class="modal-close">&times;</button>
-        <video id="modalPlayer" controls></video>
-    </div>
-</div>
-<div class="video-row">
-    <!-- Replace the URLs below with your own video links -->
-    <div class="card" data-video="https://w3schools.com">
-        <img src="https://unsplash.com" alt="Video cover thumbnail">
-        <div class="play">▶</div>
-    </div>
-    
-    <div class="card" data-video="https://w3schools.com">
-        <img src="https://unsplash.com" alt="Video cover thumbnail">
-        <div class="play">▶</div>
-    </div>
-
-    <div class="card" data-video="https://w3schools.com">
-        <img src="https://unsplash.com" alt="Video cover thumbnail">
-        <div class="play">▶</div>
-    </div>
-</div>
+// 4. Video Modal Popup Execution Logic
+const videoCards = document.querySelectorAll(".card");
