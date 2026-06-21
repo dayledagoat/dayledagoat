@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bubbly Modern Landing Page</title>
 
-<!-- Nunito Font -->
+<!-- Cute & Inviting Fredoka Font -->
 <link href="https://googleapis.com" rel="stylesheet">
 
 <style>
@@ -13,7 +13,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Nunito',sans-serif;
+    font-family:'Fredoka', sans-serif; /* Applied cute font globally */
 }
 
 body{
@@ -45,45 +45,9 @@ body{
 }
 
 .logo{
-    font-size:2rem;
-    font-weight:800;
+    font-size:2.2rem; /* Slightly larger for a playful look */
+    font-weight:700;
     color:#444;
-}
-
-.right-header{
-    display:flex;
-    align-items:center;
-    gap:20px;
-    flex-shrink: 0; /* Prevents the search and profile elements from stretching out */
-}
-
-.search{
-    width:260px; /* Locked down width */
-    height:55px;
-    border:none;
-    outline:none;
-    border-radius:999px;
-    padding-left:25px;
-    background:rgba(255,255,255,.4);
-    backdrop-filter:blur(20px);
-    font-size:1rem;
-}
-
-/* FLOATING PROFILE WITH PULSE */
-.profile{
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#7dd8ff,#b97dff);
-    box-shadow:0 0 30px rgba(170,130,255,.4);
-    cursor:pointer;
-    animation:pulse 3s infinite alternate;
-}
-
-@keyframes pulse{
-    to{
-        transform:scale(1.1);
-    }
 }
 
 /* SUB HEADER */
@@ -118,8 +82,8 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:1.1rem;
-    font-weight:700;
+    font-size:1.2rem;
+    font-weight:600;
     cursor:pointer;
     transition:.4s;
     box-shadow:0 15px 40px rgba(0,0,0,.08);
@@ -160,7 +124,7 @@ body{
     width:100%;
     height:100%;
     object-fit:cover;
-    pointer-events: none; /* Keeps 3D cursor tracking flawless */
+    pointer-events: none;
 }
 
 /* VIDEO PLAY BUTTON Overlay */
@@ -179,6 +143,7 @@ body{
     backdrop-filter:blur(20px);
     color:white;
     font-size:2rem;
+    padding-left: 5px; /* Centers the triangle visually */
     transition:.3s;
     pointer-events: none; 
 }
@@ -216,7 +181,6 @@ body{
 }
 
 /* VIDEO POPUP MODAL STYLING */
-/* Forces complete concealment unless explicitly triggered */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -225,7 +189,7 @@ body{
     height: 100vh;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(15px);
-    display: flex !important; /* Forces centered positioning logic */
+    display: flex !important;
     justify-content: center;
     align-items: center;
     z-index: 99999;
@@ -235,7 +199,6 @@ body{
     transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
-/* Activated via JS */
 .modal-overlay.open {
     opacity: 1 !important;
     pointer-events: auto !important;
@@ -308,13 +271,9 @@ body{
 
 <div class="container">
 
-    <!-- Header Navigation Section -->
+    <!-- Header Navigation Section (Cleaned up right side) -->
     <div class="header">
         <div class="logo">Home</div>
-        <div class="right-header">
-            <input class="search" placeholder="Search...">
-            <div class="profile"></div>
-        </div>
     </div>
 
     <!-- Accent Subheader -->
@@ -333,7 +292,7 @@ body{
         <!-- Dashboard Media Feeds -->
         <div class="content">
 
-            <!-- Video Cards Section with sample videos linked -->
+            <!-- Video Cards Section -->
             <div class="video-row">
                 <div class="card" data-video="https://w3schools.com">
                     <img src="https://unsplash.com" alt="Video cover thumbnail">
@@ -409,36 +368,34 @@ document.querySelectorAll(".card").forEach(card => {
     });
 });
 
-// 3. Automated Floating profile icon loop
-const profile = document.querySelector(".profile");
-let angle = 0;
-
-setInterval(() => {
-    angle += 0.02;
-    profile.style.transform = `translateY(${Math.sin(angle) * 6}px)`;
-}, 16);
-
 // 4. Video Modal Popup Execution Logic
 const videoCards = document.querySelectorAll(".card");
 const modal = document.getElementById("videoModal");
 const modalPlayer = document.getElementById("modalPlayer");
 const closeBtn = document.querySelector(".modal-close");
+
 videoCards.forEach(card => {
-card.addEventListener("click", () => {
-const videoUrl = card.getAttribute("data-video");
-if (videoUrl) {
-modalPlayer.src = videoUrl;
-modal.classList.add("open");
-modalPlayer.play();
-}
+    card.addEventListener("click", () => {
+        const videoUrl = card.getAttribute("data-video");
+        if (videoUrl) {
+            modalPlayer.src = videoUrl;
+            modal.classList.add("open");
+            modalPlayer.play();
+        }
+    });
 });
-});
+
 function closeModal() {
-modal.classList.remove("open");
-modalPlayer.pause();
-modalPlayer.src = "";
+    modal.classList.remove("open");
+    modalPlayer.pause();
+    modalPlayer.src = ""; 
 }
+
 closeBtn.addEventListener("click", closeModal);
 modal.addEventListener("click", (e) => {
-if (e.target === modal) closeModal();
+    if (e.target === modal) closeModal(); 
 });
+</script>
+
+</body>
+</html>
