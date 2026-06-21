@@ -1,1 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bubbly Modern Landing Page - Photos</title>
 
+<!-- Cute & Inviting Fredoka Font Setup -->
+<link href="https://googleapis.com" rel="stylesheet">
+
+<style>
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+ font-family:'Fredoka', sans-serif;
+}
+body{
+ min-height:100vh;
+ background: linear-gradient(135deg,#fff8ff,#f5f8ff,#fff7f9);
+ padding:30px;
+ overflow-x:hidden;
+}
+.container{
+ max-width:1500px;
+ margin:auto;
+}
+/* HEADER WITH GLASSMORPHISM */
+.header{
+ height:90px;
+ padding:0 35px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ background:rgba(255,255,255,.35);
+ backdrop-filter:blur(25px);
+ border-radius:999px;
+ border:1px solid rgba(255,255,255,.7);
+ box-shadow:
+ inset 0 2px 4px rgba(255,255,255,.9),
+ 0 20px 50px rgba(100,100,255,.08);
+}
+.logo{
+ font-size:2.2rem;
+ font-weight:700;
+ color:#444;
+ text-decoration: none;
+}
+/* SUB HEADER PANEL */
+.subheader{
+ margin-top:20px;
+ height:45px;
+ border-radius:999px;
+ background:rgba(255,255,255,.35);
+ backdrop-filter:blur(20px);
+}
+/* MAIN CONTENT SPLIT */
+.main{
+ display:flex;
+ gap:35px;
+ margin-top:40px;
+}
+/* SIDEBAR BUBBLES */
+.sidebar{
+ display:flex;
+ flex-direction:column;
+ gap:25px;
+}
+.bubble{
+ width:120px;
+ height:120px;
+ border-radius:50%;
+ background:rgba(255,255,255,.35);
+ backdrop-filter:blur(20px);
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ text-align: center;
+ font-size:1.15rem;
+ font-weight:600;
+ cursor:pointer;
+ transition:.4s;
+ box-shadow:0 15px 40px rgba(0,0,0,.08);
+ padding: 10px;
+ text-decoration:none;
+ color:inherit;
+}
+.bubble:hover{
+ transform:translateY(-8px) scale(1.05);
+}
+.bubble.active{
+ color:white;
+ background:linear-gradient(135deg,#7fd6ff,#ae7fff);
+ box-shadow:0 0 40px rgba(160,130,255,.5);
+ transform:scale(1.05);
+}
+.content{
+ flex:1;
+}
+
+/* PHOTO GALLERY GRID */
+.gallery{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:25px;
+}
+.gallery-card{
+ height:320px; /* Enhanced height profile specifically for photography pages */
+ overflow:hidden;
+ border-radius:40px;
+ border:1px solid rgba(255,255,255,.5);
+ box-shadow:0 20px 50px rgba(0,0,0,.06);
+ background: rgba(255,255,255,0.3);
+ backdrop-filter: blur(10px);
+}
+.gallery-card img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ transition:.6s ease; /* Fluid scale on image internally while card chassis stays static */
+}
+.gallery-card:hover img{
+ transform:scale(1.06); /* Elegant internal lens zoom effect */
+}
+
+/* RESPONSIVE BREAKPOINTS */
+@media(max-width:1000px){
+ .main{
+ flex-direction:column;
+ }
+ .sidebar{
+ flex-direction:row;
+ justify-content: center;
+ }
+ .bubble{
+ width:90px;
+ height:90px;
+ font-size: 0.95rem;
+ }
+ .gallery {
+ grid-template-columns: 1fr;
+ }
+}
+</style>
+</head>
+<body>
+<div class="container">
+ <!-- Header Navigation Section -->
+ <a href="vlogs.html" class="header">
+ <div class="logo">Home</div>
+ </a>
+ 
+ <div class="subheader"></div>
+ 
+ <div class="main">
+ <!-- Sidebar Navigation Buttons (Photos is Active) -->
+ <div class="sidebar">
+ <a class="bubble" href="blog.html">Blog</a>
+ <a class="bubble" href="vlogs.html">Vlogs</a>
+ <a class="bubble active" href="photos.html">Photos</a>
+ <a class="bubble" href="about.html">About Me</a>
+ </div>
+ 
+ <!-- Dashboard Media Feeds Wrapper Box -->
+ <div class="content">
+ <div class="gallery">
+ <div class="gallery-card"><img src="https://unsplash.com" alt="Gallery sample"></div>
+ <div class="gallery-card"><img src="https://unsplash.com" alt="Gallery sample"></div>
+ <div class="gallery-card"><img src="https://unsplash.com" alt="Gallery sample"></div>
+ <div class="gallery-card"><img src="https://unsplash.com" alt="Gallery sample"></div>
+ <div class="gallery-card"><img src="https://unsplash.com" alt="Gallery sample"></div>
+ <div class="gallery-card"><img src="https://unsplash.com" alt="Gallery sample"></div>
+ </div>
+ </div>
+ </div>
+</div>
+
+<script>
+// Kept completely static; no 3D scripts or tracking attached to the grid elements
+document.addEventListener('DOMContentLoaded', () => {
+ console.log("Photos grid initialized static.");
+});
+</script>
+</body>
+</html>
