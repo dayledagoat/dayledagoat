@@ -10,348 +10,406 @@
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Fredoka', sans-serif;
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+ font-family:'Fredoka', sans-serif;
 }
-
 body{
-    min-height:100vh;
-    background: linear-gradient(135deg,#fff8ff,#f5f8ff,#fff7f9);
-    padding:30px;
-    overflow-x:hidden;
+ min-height:100vh;
+ background: linear-gradient(135deg,#fff8ff,#f5f8ff,#fff7f9);
+ padding:30px;
+ overflow-x:hidden;
 }
-
 .container{
-    max-width:1500px;
-    margin:auto;
+ max-width:1500px;
+ margin:auto;
 }
-
 /* HEADER WITH GLASSMORPHISM */
 .header{
-    height:90px;
-    padding:0 35px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:rgba(255,255,255,.35);
-    backdrop-filter:blur(25px);
-    border-radius:999px;
-    border:1px solid rgba(255,255,255,.7);
-    box-shadow:
-        inset 0 2px 4px rgba(255,255,255,.9),
-        0 20px 50px rgba(100,100,255,.08);
+ height:90px;
+ padding:0 35px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ background:rgba(255,255,255,.35);
+ backdrop-filter:blur(25px);
+ border-radius:999px;
+ border:1px solid rgba(255,255,255,.7);
+ box-shadow:
+ inset 0 2px 4px rgba(255,255,255,.9),
+ 0 20px 50px rgba(100,100,255,.08);
 }
-
 .logo{
-    font-size:2.2rem; 
-    font-weight:700;
-    color:#444;
+ font-size:2.2rem;
+ font-weight:700;
+ color:#444;
 }
-
 /* SUB HEADER PANEL */
 .subheader{
-    margin-top:20px;
-    height:45px;
-    border-radius:999px;
-    background:rgba(255,255,255,.35);
-    backdrop-filter:blur(20px);
+ margin-top:20px;
+ height:45px;
+ border-radius:999px;
+ background:rgba(255,255,255,.35);
+ backdrop-filter:blur(20px);
 }
-
 /* MAIN CONTENT SPLIT */
 .main{
-    display:flex;
-    gap:35px;
-    margin-top:40px;
+ display:flex;
+ gap:35px;
+ margin-top:40px;
 }
-
 /* SIDEBAR BUBBLES */
 .sidebar{
-    display:flex;
-    flex-direction:column;
-    gap:25px;
+ display:flex;
+ flex-direction:column;
+ gap:25px;
 }
-
 .bubble{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    background:rgba(255,255,255,.35);
-    backdrop-filter:blur(20px);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align: center;
-    font-size:1.15rem;
-    font-weight:600;
-    cursor:pointer;
-    transition:.4s;
-    box-shadow:0 15px 40px rgba(0,0,0,.08);
-    padding: 10px;
+ width:120px;
+ height:120px;
+ border-radius:50%;
+ background:rgba(255,255,255,.35);
+ backdrop-filter:blur(20px);
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ text-align: center;
+ font-size:1.15rem;
+ font-weight:600;
+ cursor:pointer;
+ transition:.4s;
+ box-shadow:0 15px 40px rgba(0,0,0,.08);
+ padding: 10px;
 }
-
 .bubble:hover{
-    transform:translateY(-8px) scale(1.05);
+ transform:translateY(-8px) scale(1.05);
 }
-
 .active{
-    color:white;
-    background:linear-gradient(135deg,#7fd6ff,#ae7fff);
-    box-shadow:0 0 40px rgba(160,130,255,.5);
-    transform:scale(1.05);
+ color:white;
+ background:linear-gradient(135deg,#7fd6ff,#ae7fff);
+ box-shadow:0 0 40px rgba(160,130,255,.5);
+ transform:scale(1.05);
 }
-
 .content{
-    flex:1;
+ flex:1;
 }
-
-/* TAB CONTENT CONTROLS (CRITICAL VISIBILITY RULES FIXED HERE) */
+/* TAB CONTENT CONTROLS */
 .tab-content {
-    display: none !important; /* Hides all tabs by default */
+ display: none !important; /* Hides all tabs by default */
 }
-
 .tab-content.active-tab {
-    display: block !important; /* Forces the active selected tab to display instantly */
+ display: block !important; /* Forces active selected tab to display */
 }
-
 /* VIDEO GRID */
 .video-row{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:25px;
 }
-
 .card{
-    position:relative;
-    overflow:hidden;
-    border-radius:40px;
-    height:260px;
-    box-shadow:0 20px 50px rgba(0,0,0,.1);
-    cursor:pointer;
+ position:relative;
+ overflow:hidden;
+ border-radius:40px;
+ height:260px;
+ box-shadow:0 20px 50px rgba(0,0,0,.1);
+ cursor:pointer;
 }
-
 .card img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    pointer-events: none;
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ pointer-events: none;
 }
-
 /* VIDEO PLAY BUTTON Overlay */
 .play{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:90px;
-    height:90px;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:rgba(255,255,255,.3);
-    backdrop-filter:blur(20px);
-    color:white;
-    font-size:2rem;
-    padding-left: 5px; 
-    transition:.3s;
-    pointer-events: none; 
+ position:absolute;
+ top:50%;
+ left:50%;
+ transform:translate(-50%,-50%);
+ width:90px;
+ height:90px;
+ border-radius:50%;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ background:rgba(255,255,255,.3);
+ backdrop-filter:blur(20px);
+ color:white;
+ font-size:2rem;
+ padding-left: 5px;
+ transition:.3s;
+ pointer-events: none;
 }
-
 .card:hover .play {
-    transform:translate(-50%,-50%) scale(1.2);
-    box-shadow: 0 0 30px rgba(255,255,255,0.6);
+ transform:translate(-50%,-50%) scale(1.2);
+ box-shadow: 0 0 30px rgba(255,255,255,0.6);
 }
-
 /* PHOTO GALLERY */
 .gallery{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:25px;
 }
-
 .gallery-card{
-    height:260px;
-    overflow:hidden;
-    border-radius:40px;
-    box-shadow:0 20px 50px rgba(0,0,0,.1);
-    transition:.3s;
+ height:260px;
+ overflow:hidden;
+ border-radius:40px;
+ box-shadow:0 20px 50px rgba(0,0,0,.1);
+ transition:.3s;
 }
-
 .gallery-card img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:.6s;
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ transition:.6s;
 }
-
 .gallery-card:hover img{
-    transform:scale(1.1);
+ transform:scale(1.1);
 }
-
 /* ABOUT ME PROFILE SECTION */
 .about-card-container {
-    background: rgba(255,255,255,.35);
-    backdrop-filter: blur(20px);
-    border-radius: 40px;
-    padding: 40px;
-    box-shadow: 0 20px 50px rgba(0,0,0,.06);
-    border: 1px solid rgba(255,255,255,.5);
-    display: flex;
-    align-items: center;
-    gap: 40px;
+ background: rgba(255,255,255,.35);
+ backdrop-filter: blur(20px);
+ border-radius: 40px;
+ padding: 40px;
+ box-shadow: 0 20px 50px rgba(0,0,0,.06);
+ border: 1px solid rgba(255,255,255,.5);
+ display: flex;
+ align-items: center;
+ gap: 40px;
 }
-
 .about-avatar-frame {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-    border: 5px solid white;
-    box-shadow: 0 10px 25px rgba(160,130,255,.2);
+ width: 140px;
+ height: 140px;
+ border-radius: 50%;
+ overflow: hidden;
+ flex-shrink: 0;
+ border: 5px solid white;
+ box-shadow: 0 10px 25px rgba(160,130,255,.2);
 }
-
 .about-avatar-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
 }
-
 .about-text-frame {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
 }
-
 .about-text-frame h2 {
-    font-size: 2rem;
-    color: #444;
-    font-weight: 700;
+ font-size: 2rem;
+ color: #444;
+ font-weight: 700;
 }
-
 .about-text-frame p {
-    font-size: 1.15rem;
-    color: #666;
-    line-height: 1.6;
-    max-width: 800px;
+ font-size: 1.15rem;
+ color: #666;
+ line-height: 1.6;
+ max-width: 800px;
 }
-
 /* VIDEO POPUP MODAL STYLING */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(15px);
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999;
-    opacity: 0 !important; 
-    pointer-events: none !important; 
-    visibility: hidden !important;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100vw;
+ height: 100vh;
+ background: rgba(0, 0, 0, 0.6);
+ backdrop-filter: blur(15px);
+ display: flex !important;
+ justify-content: center;
+ align-items: center;
+ z-index: 99999;
+ opacity: 0 !important;
+ pointer-events: none !important;
+ visibility: hidden !important;
+ transition: opacity 0.4s ease, visibility 0.4s ease;
 }
-
 .modal-overlay.open {
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    visibility: visible !important;
+ opacity: 1 !important;
+ pointer-events: auto !important;
+ visibility: visible !important;
 }
-
 .modal-content {
-    position: relative;
-    width: 90%;
-    max-width: 800px;
-    border-radius: 30px;
-    overflow: hidden;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
-    transform: scale(0.8);
-    transition: transform 0.4s ease;
+ position: relative;
+ width: 90%;
+ max-width: 800px;
+ border-radius: 30px;
+ overflow: hidden;
+ box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+ transform: scale(0.8);
+ transition: transform 0.4s ease;
 }
-
 .modal-overlay.open .modal-content {
-    transform: scale(1);
+ transform: scale(1);
 }
-
 .modal-content video {
-    width: 100%;
-    display: block;
-    background: #000;
+ width: 100%;
+ display: block;
+ background: #000;
 }
-
 .modal-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
-    color: white;
-    font-size: 1.8rem;
-    line-height: 40px;
-    cursor: pointer;
-    z-index: 10;
-    transition: 0.3s;
+ position: absolute;
+ top: 20px;
+ right: 20px;
+ width: 45px;
+ height: 45px;
+ background: rgba(255, 255, 255, 0.2);
+ backdrop-filter: blur(10px);
+ border: 1px solid rgba(255, 255, 255, 0.4);
+ border-radius: 50%;
+ color: white;
+ font-size: 1.8rem;
+ line-height: 40px;
+ cursor: pointer;
+ z-index: 10;
+ transition: 0.3s;
 }
-
 .modal-close:hover {
-    background: rgba(255, 255, 255, 0.4);
-    transform: rotate(90deg);
+ background: rgba(255, 255, 255, 0.4);
+ transform: rotate(90deg);
 }
-
 /* RESPONSIVE BREAKPOINTS */
 @media(max-width:1000px){
-    .video-row, .gallery, .about-card-container{
-        grid-template-columns:1fr;
-    }
-    .about-card-container {
-        flex-direction: column;
-        text-align: center;
-        padding: 30px;
-    }
-    .main{
-        flex-direction:column;
-    }
-    .sidebar{
-        flex-direction:row;
-        justify-content: center;
-    }
-    .bubble{
-        width:90px;
-        height:90px;
-        font-size: 0.95rem;
-    }
-    // 1. Sidebar selection & content panel filter swapping logic
+ .video-row, .gallery, .about-card-container{
+ grid-template-columns:1fr;
+ }
+ .about-card-container {
+ flex-direction: column;
+ text-align: center;
+ padding: 30px;
+ }
+ .main{
+ flex-direction:column;
+ }
+ .sidebar{
+ flex-direction:row;
+ justify-content: center;
+ }
+ .bubble{
+ width:90px;
+ height:90px;
+ font-size: 0.95rem;
+ }
+}
+</style>
+</head>
+<body>
+<div class="container">
+ <!-- Header Navigation Section -->
+ <div class="header">
+ <div class="logo">Home</div>
+ </div>
+ <!-- Accent Subheader -->
+ <div class="subheader"></div>
+ <!-- Main Content Workspace Layout -->
+ <div class="main">
+ <!-- Sidebar Navigation Buttons -->
+ <div class="sidebar">
+ <div class="bubble" data-tab="blog-panel">Blog</div>
+ <div class="bubble active" data-tab="vlogs-panel">Vlogs</div>
+ <div class="bubble" data-tab="photos-panel">Photos</div>
+ <div class="bubble" data-tab="about-panel">About Me</div>
+ </div>
+ <!-- Dashboard Media Feeds Wrapper Box -->
+ <div class="content">
+ <!-- 1. Blog Panel Section -->
+ <div id="blog-panel" class="tab-content">
+ <div class="gallery">
+ <div class="gallery-card">
+ <img src="https://unsplash.com" alt="Blog cover picture">
+ </div>
+ <div class="gallery-card">
+ <img src="https://unsplash.com" alt="Blog sample illustration">
+ </div>
+ <div class="gallery-card">
+ <img src="https://unsplash.com" alt="Blog setup theme snapshot">
+ </div>
+ </div>
+ </div>
+ <!-- 2. Vlogs Panel Section -->
+ <div id="vlogs-panel" class="tab-content active-tab">
+ <div class="video-row">
+ <div class="card" data-video="https://w3schools.com">
+ <img src="https://unsplash.com" alt="Video cover thumbnail">
+ <div class="play">▶</div>
+ </div>
+ <div class="card" data-video="https://w3schools.com">
+ <img src="https://unsplash.com" alt="Video cover thumbnail">
+ <div class="play">▶</div>
+ </div>
+ <div class="card" data-video="https://w3schools.com">
+ <img src="https://unsplash.com" alt="Video cover thumbnail">
+ <div class="play">▶</div>
+ </div>
+ </div>
+ </div>
+ <!-- 3. Photos Panel Section -->
+ <div id="photos-panel" class="tab-content">
+ <div class="gallery">
+ <div class="gallery-card">
+ <img src="https://unsplash.com" alt="Gallery item card visual">
+ </div>
+ <div class="gallery-card">
+ <img src="https://unsplash.com" alt="Gallery item card visual">
+ </div>
+ <div class="gallery-card">
+ <img src="https://unsplash.com" alt="Gallery item card visual">
+ </div>
+ </div>
+ </div>
+ <!-- 4. About Me Panel Section Layout -->
+ <div id="about-panel" class="tab-content">
+ <div class="about-card-container">
+ <div class="about-avatar-frame">
+ <img src="https://unsplash.com" alt="My Portrait Avatar">
+ </div>
+ <div class="about-text-frame">
+ <h2>Hi there, I'm Alex! ✨</h2>
+ <p>Welcome to my creative corner! I love documenting life's cozy moments, recording warm vlogs, and sharing aesthetic frames. This dashboard is my little digital playground to save things that inspire me. Thanks for stopping by!</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+</div>
+
+<!-- Video Popup Overlay Shell Container -->
+<div id="videoModal" class="modal-overlay">
+ <div class="modal-content">
+ <button class="modal-close">&times;</button>
+ <video id="modalPlayer" controls></video>
+ </div>
+</div>
+
+<!-- All Interactivity Logic Script Block Safely at the Bottom -->
+<script>
+// 1. Sidebar selection & content panel filter swapping logic
 const bubbles = document.querySelectorAll(".bubble");
 const tabContents = document.querySelectorAll(".tab-content");
+
 bubbles.forEach(button => {
-button.addEventListener("click", () => {
-// Clear active bubble styles
-bubbles.forEach(b => b.classList.remove("active"));
-button.classList.add("active");
-// Hide all active content tabs safely
-tabContents.forEach(content => content.classList.remove("active-tab"));
-// Match the target data id string from custom attribute markers
-const targetTabId = button.getAttribute("data-tab");
-const activeContentBlock = document.getElementById(targetTabId);
-if (activeContentBlock) {
-activeContentBlock.classList.add("active-tab");
-}
+ button.addEventListener("click", () => {
+ bubbles.forEach(b => b.classList.remove("active"));
+ button.classList.add("active");
+
+ tabContents.forEach(content => content.classList.remove("active-tab"));
+
+ const targetTabId = button.getAttribute("data-tab");
+ const activeContentBlock = document.getElementById(targetTabId);
+ if (activeContentBlock) {
+ activeContentBlock.classList.add("active-tab");
+ }
+ });
 });
-});
+
 // 2. 3D Card mouse tilting effects
 document.querySelectorAll(".card").forEach(card => {
-card.addEventListener("mousemove", (e) => {
-const rect = card.getBoundingClientRect();
-const x = e.clientX - rect.left;
+ card.addEventListener("mousemove", (e) => {
+ const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
 const y = e.clientY - rect.top;
 const rotateX = (rect.height / 2 - y) / 10;
 const rotateY = (x - rect.width / 2) / 10;
@@ -385,80 +443,4 @@ closeBtn.addEventListener("click", closeModal);
 modal.addEventListener("click", (e) => {
 if (e.target === modal) closeModal();
 });
-}
-</style>
-</head>
-<body>
-
-<div class="container">
-
-    <!-- Header Navigation Section -->
-    <div class="header">
-        <div class="logo">Home</div>
-    </div>
-
-    <!-- Accent Subheader -->
-    <div class="subheader"></div>
-
-    <!-- Main Content Workspace Layout -->
-    <div class="main">
-
-        <!-- Sidebar Navigation Buttons (Set Vlogs to active by default) -->
-        <div class="sidebar">
-            <div class="bubble" data-tab="blog-panel">Blog</div>
-            <div class="bubble active" data-tab="vlogs-panel">Vlogs</div>
-            <div class="bubble" data-tab="photos-panel">Photos</div>
-            <div class="bubble" data-tab="about-panel">About Me</div>
-        </div>
-
-        <!-- Dashboard Media Feeds Wrapper Box -->
-        <div class="content">
-
-            <!-- 1. Blog Panel Section -->
-            <div id="blog-panel" class="tab-content">
-                <div class="gallery">
-                    <div class="gallery-card">
-                        <img src="https://unsplash.com" alt="Blog cover picture">
-                    </div>
-                    <div class="gallery-card">
-                        <img src="https://unsplash.com" alt="Blog sample illustration">
-                    </div>
-                    <div class="gallery-card">
-                        <img src="https://unsplash.com" alt="Blog setup theme snapshot">
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2. Vlogs Panel Section (Set to active-tab by default) -->
-            <div id="vlogs-panel" class="tab-content active-tab">
-                <div class="video-row">
-                    <div class="card" data-video="https://www.w3schools.com/html/mov_bbb.mp4">
-                        <img src="https://unsplash.com" alt="Video cover thumbnail">
-                        <div class="play">▶</div>
-                    </div>
-                    <div class="card" data-video="https://www.w3schools.com/html/movie.mp4">
-                        <img src="https://unsplash.com" alt="Video cover thumbnail">
-                        <div class="play">▶</div>
-                    </div>
-                    <div class="card" data-video="https://www.w3schools.com/html/mov_bbb.mp4">
-                        <img src="https://unsplash.com" alt="Video cover thumbnail">
-                        <div class="play">▶</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. Photos Panel Section -->
-            <div id="photos-panel" class="tab-content">
-                <div class="gallery">
-                    <div class="gallery-card">
-                        <img src="https://unsplash.com" alt="Gallery item card visual">
-                    </div>
-                    <div class="gallery-card">
-                        <img src="https://unsplash.com" alt="Gallery item card visual">
-                    </div>
-                    <div class="gallery-card">
-                        <img src="https://unsplash.com" alt="Gallery item card visual">
-                    </div>
-                </div>
-
-        
+ 
