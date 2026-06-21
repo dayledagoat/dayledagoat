@@ -3,138 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Creative Portfolio</title>
+    <title>Bubbly Modern Website</title>
+    <!-- Importing a friendly, modern rounded font -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f0f11;
-            --card-bg: #1a1a1e;
-            --text-color: #f3f4f6;
-            --accent-color: #3b82f6;
-            --text-muted: #9ca3af;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            --panel-bg: #ffffff;
+            --text-main: #2d3748;
+            --accent-blue: #63b3ed;
+            --accent-pink: #fbb6ce;
+            --accent-purple: #b794f4;
+            --hover-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+            --normal-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Fredoka', sans-serif;
+        }
+
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            padding: 2rem 1rem;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            color: var(--text-main);
+            padding: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
         }
-        .container { max-width: 1000px; margin: 0 auto; }
-        
-        /* Header & Socials */
-        header { text-align: center; margin-bottom: 3rem; }
-        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        header p { color: var(--text-muted); font-size: 1.1rem; }
-        .social-links { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; }
-        .social-links a { color: var(--accent-color); text-decoration: none; font-weight: bold; }
-        .social-links a:hover { text-decoration: underline; }
 
-        /* Navigation */
-        nav { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 3rem; border-bottom: 1px solid #2e2e33; padding-bottom: 1rem; }
-        nav a { color: var(--text-color); text-decoration: none; font-weight: 500; }
-        nav a:hover { color: var(--accent-color); }
+        /* Layout Container */
+        .window-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-        /* Sections */
-        section { margin-bottom: 4rem; scroll-margin-top: 2rem; }
-        section h2 { font-size: 1.8rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent-color); padding-left: 0.5rem; }
-        
-        /* Grid Layouts */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .card { background: var(--card-bg); border-radius: 8px; overflow: hidden; padding: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
-        
-        /* Media Responsiveness */
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 1rem; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 4px; }
-        .photo-gallery img { width: 100%; height: auto; border-radius: 4px; display: block; margin-bottom: 1rem; }
-        .audio-container audio { width: 100%; margin-top: 0.5rem; }
-        
-        /* Blog Styles */
-        .blog-post { margin-bottom: 1.5rem; }
-        .blog-post h3 { font-size: 1.3rem; margin-bottom: 0.25rem; }
-        .blog-date { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem; }
+        /* Top Header */
+        .main-header {
+            background: var(--panel-bg);
+            border-radius: 40px;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--normal-shadow);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-bar {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+            width: 240px;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            border-color: var(--accent-blue);
+            background: #fff;
+            box-shadow: 0 0 10px rgba(99, 179, 237, 0.2);
+        }
+
+        .profile-bubble {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            box-shadow: var(--normal-shadow);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .profile-bubble:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: var(--hover-shadow);
+        }
+
+        /* Sub-Header */
+        .sub-header {
+            background: var(--panel-bg);
+            border-radius: 20px;
+            height: 35px;
+            width: 100%;
+            box-shadow: var(--normal-shadow);
+            opacity: 0.8;
+        }
+
+        /* Main Workspace Content Splitting Left/Right */
+        .main-content {
+            display: flex;
+            gap: 24px;
+            width: 100%;
+        }
+
+        /* Left Side Bubble Navigation */
+        .side-navigation {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            min-width: 110px;
+        }
+
+        .nav-bubble {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: var(--panel-bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: var(--normal-shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid transparent;
+        }
+
+        /* Active Hover Effect styling */
+        .nav-bubble:hover {
+            transform: scale(1.15);
+            box-shadow: var(--hover-shadow);
+            background: #fff;
+        }
+
+        .nav-bubble.blog-btn:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+        .nav-bubble.vlogs-btn:hover { border-color: var(--accent-pink); color: var(--accent-pink); }
+        .nav-bubble.photos-btn:hover { border-color: var(--accent-purple); color: var(--accent-purple); }
+
+        /* Right Content Dashboard Blocks */
+        .dashboard-grids {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            flex-grow: 1;
+        }
+
+        .grid-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        /* Card Block Generic Styling */
+        .card {
+            background: var(--panel-bg);
+            border-radius: 30px;
+            aspect-ratio: 4 / 3;
+            box-shadow: var(--normal-shadow);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        /* Video Row Container & Play Button Overlay */
+        .video-card img, .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .video-card:hover img, .gallery-card:hover img {
+            transform: scale(1.06);
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 65px;
+            height: 65px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .play-button::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 0 10px 18px;
+            border-color: transparent transparent transparent var(--text-main);
+            margin-left: 5px;
+        }
+
+        .video-card:hover .play-button {
+            transform: translate(-50%, -50%) scale(1.15);
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(99, 179, 237, 0.4);
+        }
+
+        /* Mobile Responsive Adjustments */
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            .main-content { flex-direction: column; }
+            .side-navigation { flex-direction: row; justify-content: center; width: 100%; }
+            .grid-row { grid-template-columns: 1fr; }
+            .search-bar { width: 140px; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Header -->
-        <header id="home">
-            <h1>Your Name</h1>
-            <p>Video Editor • Photographer • Beat Producer</p>
-            <div class="social-links">
-                <a href="https://instagram.com" target="_blank">Instagram</a>
-                <a href="https://youtube.com" target="_blank">YouTube</a>
-                <a href="https://soundcloud.com" target="_blank">SoundCloud</a>
+    <div class="window-wrapper">
+        
+        <!-- Top Rounded Navigation Header -->
+        <header class="main-header">
+            <div class="logo">Home</div>
+            <div class="header-right">
+                <input type="text" class="search-bar" placeholder="Search...">
+                <div class="profile-bubble">Me</div>
             </div>
         </header>
 
-        <!-- Navigation Bar -->
-        <nav>
-            <a href="#video">Video Edits</a>
-            <a href="#photography">Photography</a>
-            <a href="#beats">Beats</a>
-            <a href="#blog">Blog</a>
-        </nav>
+        <!-- Rounded Sub-Header Anchor -->
+        <div class="sub-header"></div>
 
-        <!-- Video Section -->
-        <section id="video">
-            <h2>Video Edits</h2>
-            <div class="grid">
-                <div class="card">
-                    <div class="video-container">
-                        <!-- Replace with your own YouTube embed link -->
-                        <iframe src="https://youtube.com" allowfullscreen></iframe>
+        <!-- App Layout Content Body -->
+        <main class="main-content">
+            
+            <!-- Left Side Bubble Split Navigation Modules -->
+            <nav class="side-navigation">
+                <a href="#blog" class="nav-bubble blog-btn">
+                    <span>📝</span>
+                    <span>Blog</span>
+                </a>
+                <a href="#vlogs" class="nav-bubble vlogs-btn">
+                    <span>🎬</span>
+                    <span>Vlogs</span>
+                </a>
+                <a href="#photos" class="nav-bubble photos-btn">
+                    <span>📸</span>
+                    <span>Photos</span>
+                </a>
+            </nav>
+
+            <!-- Dashboard Dynamic Feed Grid Modules -->
+            <div class="dashboard-grids">
+                
+                <!-- Video Rows (With Play Buttons) -->
+                <div class="grid-row">
+                    <div class="card video-card">
+                        <img src="https://unsplash.com" alt="Video Thumbnail">
+                        <div class="play-button"></div>
                     </div>
-                    <h3>Project Title 1</h3>
-                    <p style="color: var(--text-muted);">Short description of your edit / software used.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Photography Section -->
-        <section id="photography">
-            <h2>Photography</h2>
-            <div class="grid photo-gallery">
-                <div class="card">
-                    <!-- Replace with your actual image URL or paths in github -->
-                    <img src="https://unsplash.com" alt="Sample Photography">
-                    <h3>Street Photography</h3>
-                    <p style="color: var(--text-muted);">Shot on Sony a7III - 35mm.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Beats Section -->
-        <section id="beats">
-            <h2>Beat Production</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Lo-Fi Chill Beat</h3>
-                    <p style="color: var(--text-muted);">Produced in FL Studio / Ableton.</p>
-                    <!-- Replace with your audio file path or SoundCloud link -->
-                    <div class="audio-container">
-                        <audio controls>
-                            <source src="your-beat.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
+                    <div class="card video-card">
+                        <img src="https://unsplash.com" alt="Video Thumbnail">
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="card video-card">
+                        <img src="https://unsplash.com" alt="Video Thumbnail">
+                        <div class="play-button"></div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Blog Section -->
-        <section id="blog">
-            <h2>Blog</h2>
-            <div class="card">
-                <div class="blog-post">
-                    <h3>My Creative Process in 2026</h3>
-                    <div class="blog-date">June 21, 2026</div>
-                    <p>This is where you can write a brief breakdown of how you make your beats, edit your videos, or tell stories about your photo shoots.</p>
-                </div>
-            </div>
-        </section>
-    </div>
+                <!-- Lifestyle Media Image Gallery Row -->
+                <div class="grid-row">
 
-</body>
-</html>
