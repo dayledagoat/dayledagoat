@@ -264,24 +264,14 @@ body{
  </div>
 </div>
 
+<!-- Replace the script block at the very bottom of blog.html with this -->
 <script>
-// Since this page handles standard direct link routing, we only need the 3D card tilt script loaded here!
 document.addEventListener('DOMContentLoaded', () => {
- const cards = document.querySelectorAll(".blog-post-card");
- cards.forEach(card => {
- card.addEventListener("mousemove", (e) => {
- const rect = card.getBoundingClientRect();
- const x = e.clientX - rect.left;
- const y = e.clientY - rect.top;
- const rotateX = (rect.height / 2 - y) / 30; // Softened sensitivity for wider blog cards
- const rotateY = (x - rect.width / 2) / 30;
- card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
- });
- card.forEach && card.addEventListener("mouseleave", () => {
- card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
- });
- });
+    // 3D tracking engine is cleared here to keep this page completely static.
+    // The other pages will still tilt perfectly because they have their own scripts!
+    console.log("Blog page loaded static.");
 });
 </script>
+
 </body>
 </html>
