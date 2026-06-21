@@ -265,63 +265,93 @@
             margin-top: auto;
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            body { padding: 12px; }
-            .main-content { flex-direction: column; }
-            .side-navigation { flex-direction: row; justify-content: center; width: 100%; }
-            .grid-row { grid-template-columns: 1fr; }
+        /* Audio File Layout Formatting */
+        .audio-card {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: var(--panel-bg);
         }
-    </style>
-</head>
-<body>
 
-    <div class="window-wrapper">
+        .audio-wave-wrapper {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 40px;
+            margin-top: 15px;
+        }
+
+        .audio-bar {
+            flex-grow: 1;
+            background: #e2e8f0;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        /* Setting variable dummy heights for simulated audio waves */
+        .audio-bar:nth-child(1) { height: 30%; }
+        .audio-bar:nth-child(2) { height: 60%; }
+        .audio-bar:nth-child(3) { height: 45%; }
+        .audio-bar:nth-child(4) { height: 85%; }
+        .audio-bar:nth-child(5) { height: 60%; }
+        .audio-bar:nth-child(6) { height: 75%; }
+        .audio-bar:nth-child(7) { height: 40%; }
+
+        .audio-card:hover .audio-bar {
+            background: var(--accent-purple);
+        }
         
-        <!-- Clean, Simplified Navigation Header -->
-        <header class="main-header">
-            <div class="logo">Home</div>
-        </header>
+        .audio-card:hover .audio-bar:nth-child(even) {
+            background: var(--accent-blue);
+        }
 
-        <!-- Rounded Sub-Header Anchor -->
-        <div class="sub-header"></div>
+        .audio-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
 
-        <!-- App Layout Content Body -->
-        <main class="main-content">
-            
-            <!-- Left Side Transparent Bubble Gradient Navigation -->
-            <nav class="side-navigation">
-                <a href="#blog" class="nav-bubble">
-                    <span>📝</span>
-                    <span>Blog</span>
-                </a>
-                <a href="#vlogs" class="nav-bubble">
-                    <span>🎬</span>
-                    <span>Vlogs</span>
-                </a>
-                <a href="#photos" class="nav-bubble">
-                    <span>📸</span>
-                    <span>Photos</span>
-                </a>
-            </nav>
+        .audio-title {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-            <!-- Dashboard Segments -->
-            <div class="dashboard-grids">
-                
-                <!-- Blog Display Section -->
-                <div class="section-block">
-                    <h2 class="section-title">Latest Articles</h2>
-                    <div class="grid-row">
-                        <div class="card blog-card">
-                            <span class="blog-tag">Design</span>
-                            <h3 class="blog-title">Building Bubbly UI Mockups Fast</h3>
-                            <div class="blog-footer">Read Post →</div>
-                        </div>
-                        <div class="card blog-card">
-                            <span class="blog-tag">Trends</span>
-                            <h3 class="blog-title">Why Soft Rounded Edges Feel Better</h3>
-                            <div class="blog-footer">Read Post →</div>
-                        </div>
-                        <div class="card blog-card">
-                            <span class="blog-tag">Tech</span>
-                            <h3 class="blog-title">Custom Gradient Border Secrets</h3>
+        .audio-duration {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .mini-play-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .mini-play-btn::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 6px 0 6px 10px;
+            border-color: transparent transparent transparent var(--text-main);
+            margin-left: 2px;
+        }
+
+
