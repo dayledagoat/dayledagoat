@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bubbly Modern Landing Page</title>
 
-<!-- Cute & Inviting Fredoka Font -->
+<!-- Cute & Inviting Fredoka Font Setup -->
 <link href="https://googleapis.com" rel="stylesheet">
 
 <style>
@@ -45,62 +45,18 @@ body{
 }
 
 .logo{
-    font-size:2.2rem;
+    font-size:2.2rem; 
     font-weight:700;
     color:#444;
 }
 
-/* NEW CUTE ABOUT ME / BIO CONTAINER */
+/* SUB HEADER PANEL */
 .subheader{
     margin-top:20px;
-    padding:25px 35px;
-    border-radius:40px; /* Adjusted to a pill/card hybrid shape */
+    height:45px;
+    border-radius:999px;
     background:rgba(255,255,255,.35);
     backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.5);
-    box-shadow: 0 15px 35px rgba(0,0,0,.04);
-    
-    display:flex;
-    align-items:center;
-    gap:30px;
-}
-
-/* Profile Photo Circular Window */
-.bio-avatar{
-    width:90px;
-    height:90px;
-    border-radius:50%;
-    overflow:hidden;
-    flex-shrink:0;
-    border:4px solid white;
-    box-shadow: 0 8px 20px rgba(160,130,255,.2);
-}
-
-.bio-avatar img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-/* Profile Typography Blocks */
-.bio-text-box{
-    display:flex;
-    flex-direction:column;
-    gap:4px;
-}
-
-.bio-title {
-    font-size:1.6rem;
-    font-weight:700;
-    color:#444;
-}
-
-.bio-desc{
-    font-size:1.05rem;
-    font-weight:400;
-    color:#666;
-    line-height:1.4;
-    max-width:900px;
 }
 
 /* MAIN CONTENT SPLIT */
@@ -126,11 +82,13 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:1.2rem;
+    text-align: center;
+    font-size:1.15rem;
     font-weight:600;
     cursor:pointer;
     transition:.4s;
     box-shadow:0 15px 40px rgba(0,0,0,.08);
+    padding: 10px;
 }
 
 .bubble:hover{
@@ -146,6 +104,15 @@ body{
 
 .content{
     flex:1;
+}
+
+/* CONTENT BOX FILTER PANEL HANDLING */
+.tab-content {
+    display: none; /* Controlled dynamically by JavaScript toggle states */
+}
+
+.tab-content.active-tab {
+    display: block;
 }
 
 /* VIDEO GRID */
@@ -187,7 +154,7 @@ body{
     backdrop-filter:blur(20px);
     color:white;
     font-size:2rem;
-    padding-left: 5px;
+    padding-left: 5px; 
     transition:.3s;
     pointer-events: none; 
 }
@@ -199,7 +166,6 @@ body{
 
 /* PHOTO GALLERY */
 .gallery{
-    margin-top:35px;
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:25px;
@@ -222,6 +188,54 @@ body{
 
 .gallery-card:hover img{
     transform:scale(1.1);
+}
+
+/* NEW STYLING FOR CUTE BIO CONTAINER BOX */
+.about-card-container {
+    background: rgba(255,255,255,.35);
+    backdrop-filter: blur(20px);
+    border-radius: 40px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.06);
+    border: 1px solid rgba(255,255,255,.5);
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-avatar-frame {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 5px solid white;
+    box-shadow: 0 10px 25px rgba(160,130,255,.2);
+}
+
+.about-avatar-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-text-frame {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.about-text-frame h2 {
+    font-size: 2rem;
+    color: #444;
+    font-weight: 700;
+}
+
+.about-text-frame p {
+    font-size: 1.15rem;
+    color: #666;
+    line-height: 1.6;
+    max-width: 800px;
 }
 
 /* VIDEO POPUP MODAL STYLING */
@@ -295,23 +309,25 @@ body{
 
 /* RESPONSIVE BREAKPOINTS */
 @media(max-width:1000px){
-    .subheader{
+    .video-row, .gallery, .about-card-container{
+        grid-template-columns:1fr;
+    }
+    .about-card-container {
         flex-direction: column;
         text-align: center;
-        border-radius: 30px;
-    }
-    .video-row, .gallery{
-        grid-template-columns:1fr;
+        padding: 30px;
     }
     .main{
         flex-direction:column;
     }
     .sidebar{
         flex-direction:row;
+        justify-content: center;
     }
     .bubble{
         width:90px;
         height:90px;
+        font-size: 0.95rem;
     }
 }
 </style>
@@ -325,103 +341,102 @@ body{
         <div class="logo">Home</div>
     </div>
 
-    <!-- NEW CONTENT STRUCTURE INSIDE THE SUBHEADER BLOCK -->
-    <div class="subheader">
-        <!-- Replace the image link below with your own avatar picture -->
-        <div class="bio-avatar">
-            <img src="https://unsplash.com" alt="My Profile Picture">
-        </div>
-        
-        <div class="bio-text-box">
-            <h2 class="bio-title">Hello, I'm Alex! ✨</h2>
-            <p class="bio-desc">Welcome to my creative corner! I love documenting my daily adventures, filming cozy lifestyle vlogs, and catching beautiful photography frames. Have a look around my space!</p>
-        </div>
-    </div>
+    <!-- Accent Subheader -->
+    <div class="subheader"></div>
 
     <!-- Main Content Workspace Layout -->
     <div class="main">
 
         <!-- Sidebar Navigation Buttons -->
         <div class="sidebar">
-            <div class="bubble active">Blog</div>
-            <div class="bubble">Vlogs</div>
-            <div class="bubble">Photos</div>
+            <div class="bubble active" data-tab="blog-panel">Blog</div>
+            <div class="bubble" data-tab="vlogs-panel">Vlogs</div>
+            <div class="bubble" data-tab="photos-panel">Photos</div>
+            <!-- Newly Added About Me Tab Button Component -->
+            <div class="bubble" data-tab="about-panel">About Me</div>
         </div>
 
-        <!-- Dashboard Media Feeds -->
+        <!-- Dashboard Media Feeds Wrapper Box -->
         <div class="content">
 
-            <!-- Video Cards Section -->
-            <div class="video-row">
-                <div class="card" data-video="https://w3schools.com">
-                    <img src="https://unsplash.com" alt="Video cover thumbnail">
-                    <div class="play">▶</div>
-                </div>
-                <div class="card" data-video="https://w3schools.com">
-                    <img src="https://unsplash.com" alt="Video cover thumbnail">
-                    <div class="play">▶</div>
-                </div>
-                <div class="card" data-video="https://w3schools.com">
-                    <img src="https://unsplash.com" alt="Video cover thumbnail">
-                    <div class="play">▶</div>
-                </div>
-            </div>
-
-            <!-- Photo Gallery Section -->
-            <div class="gallery">
-                <div class="gallery-card">
-                    <img src="https://unsplash.com" alt="Gallery thumbnail">
-                </div>
-                <div class="gallery-card">
-                    <img src="https://unsplash.com" alt="Gallery thumbnail">
-                </div>
-                <div class="gallery-card">
-                    <img src="https://unsplash.com" alt="Gallery thumbnail">
+            <!-- 1. Blog Panel Section -->
+            <div id="blog-panel" class="tab-content active-tab">
+                <div class="gallery">
+                    <div class="gallery-card">
+                        <img src="https://unsplash.com" alt="Blog cover picture">
+                    </div>
+                    <div class="gallery-card">
+                        <img src="https://unsplash.com" alt="Blog sample illustration">
+                    </div>
+                    <div class="gallery-card">
+                        <img src="https://unsplash.com" alt="Blog setup theme snapshot">
+                    </div>
                 </div>
             </div>
 
-        </div>
-    </div>
-</div>
+            <!-- 2. Vlogs Panel Section -->
+            <div id="vlogs-panel" class="tab-content">
+                <div class="video-row">
+                    <div class="card" data-video="https://w3schools.com">
+                        <img src="https://unsplash.com" alt="Video cover thumbnail">
+                        <div class="play">▶</div>
+                    </div>
+                    <div class="card" data-video="https://w3schools.com">
+                        <img src="https://unsplash.com" alt="Video cover thumbnail">
+                        <div class="play">▶</div>
+                    </div>
+                    <div class="card" data-video="https://w3schools.com">
+                        <img src="https://unsplash.com" alt="Video cover thumbnail">
+                        <div class="play">▶</div>
+                    </div>
+                </div>
+            </div>
 
-<!-- Video Popup Overlay Shell Container -->
-<div id="videoModal" class="modal-overlay">
-    <div class="modal-content">
-        <button class="modal-close">&times;</button>
-        <video id="modalPlayer" controls></video>
-    </div>
-</div>
-
-<!-- All Interactivity Logic -->
-<script>
-// 1. Sidebar selection toggles
+            <!-- 3. Photos Panel Section -->
+            <div id="photos-panel" class="tab-content">
+                <div class="gallery">
+                    <div class="gallery-card">
+                        <img src="https://unsplash.com" alt="Gallery item card visual">
+                    </div>
+                    <div class="gallery-card">
+                        <img src="https://unsplash.com" alt="Gallery item card visual">
+                    </div>
+                    <div class="gallery-card">
+                        <img src="https://unsplash.com" alt="Gallery item card visual">
+                    </div>
+                </div>
+            </div>
+            Hi there, I'm Alex! ✨
+Welcome to my creative corner! I love documenting life's cozy moments, recording warm vlogs, and sharing aesthetic frames. This dashboard is my little digital playground to save things that inspire me. Thanks for stopping by
+// 1. Unified Sidebar selection & content panel filter swapping logic
 const bubbles = document.querySelectorAll(".bubble");
-
+const tabContents = document.querySelectorAll(".tab-content");
 bubbles.forEach(button => {
-    button.addEventListener("click", () => {
-        bubbles.forEach(b => b.classList.remove("active"));
-        button.classList.add("active");
-    });
+button.addEventListener("click", () => {
+// Clear old highlights from bubble array
+bubbles.forEach(b => b.classList.remove("active"));
+button.classList.add("active");
+// Hide all template blocks completely
+tabContents.forEach(content => content.classList.remove("active-tab"));
+// Match the target data id string from custom attribute markers
+const targetTabId = button.getAttribute("data-tab");
+const activeContentBlock = document.getElementById(targetTabId);
+if (activeContentBlock) {
+activeContentBlock.classList.add("active-tab");
+}
 });
-
+});
 // 2. 3D Card mouse tilting effects
 document.querySelectorAll(".card").forEach(card => {
-    card.addEventListener("mousemove", (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const rotateX = (rect.height / 2 - y) / 10;
-        const rotateY = (x - rect.width / 2) / 10;
-
-        card.style.transform = `
-            perspective(1000px)
-            rotateX(${rotateX}deg)
-            rotateY(${rotateY}deg)
-            translateY(-10px)
-        `;
-    });
-    card.addEventListener("mouseleave", () => {
+card.addEventListener("mousemove", (e) => {
+const rect = card.getBoundingClientRect();
+const x = e.clientX - rect.left;
+const y = e.clientY - rect.top;
+const rotateX = (rect.height / 2 - y) / 10;
+const rotateY = (x - rect.width / 2) / 10;
+card.style.transform = perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px);
+});
+card.addEventListener("mouseleave", () => {
 card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
 });
 });
