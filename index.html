@@ -4,19 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bubbly Modern Website</title>
-    <!-- Importing a friendly, modern rounded font -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Importing Satoshi Font from a public CDN -->
+    <link href="https://fontshare.com[]=satoshi@700,900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
             --panel-bg: #ffffff;
             --text-main: #2d3748;
-            --accent-blue: #63b3ed;
-            --accent-pink: #fbb6ce;
-            --accent-purple: #b794f4;
-            --hover-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+            --text-muted: #718096;
+            --border-gradient: linear-gradient(135deg, #63b3ed 0%, #b794f4 50%, #fbb6ce 100%);
+            --hover-shadow: 0 15px 30px rgba(183, 148, 244, 0.2);
             --normal-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
@@ -24,7 +21,8 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Satoshi', sans-serif;
+            font-weight: 700;
         }
 
         body {
@@ -50,66 +48,25 @@
         .main-header {
             background: var(--panel-bg);
             border-radius: 40px;
-            padding: 15px 40px;
+            padding: 20px 40px;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             box-shadow: var(--normal-shadow);
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.2rem;
+            font-weight: 900;
             color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
             cursor: pointer;
             transition: transform 0.2s ease;
         }
 
         .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .search-bar {
-            background: #f7fafc;
-            border: 2px solid #e2e8f0;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 1rem;
-            outline: none;
-            width: 240px;
-            transition: all 0.3s ease;
-        }
-
-        .search-bar:focus {
-            border-color: var(--accent-blue);
-            background: #fff;
-            box-shadow: 0 0 10px rgba(99, 179, 237, 0.2);
-        }
-
-        .profile-bubble {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--accent-pink);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            color: white;
-            cursor: pointer;
-            box-shadow: var(--normal-shadow);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .profile-bubble:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: var(--hover-shadow);
+            transform: scale(1.03);
         }
 
         /* Sub-Header */
@@ -122,10 +79,10 @@
             opacity: 0.8;
         }
 
-        /* Main Workspace Content Splitting Left/Right */
+        /* Main Workspace Structure */
         .main-content {
             display: flex;
-            gap: 24px;
+            gap: 32px;
             width: 100%;
         }
 
@@ -133,46 +90,80 @@
         .side-navigation {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 24px;
             align-items: center;
             min-width: 110px;
         }
 
+        /* Transparent Bubble Button with Gradient Border */
         .nav-bubble {
-            width: 90px;
-            height: 90px;
+            width: 95px;
+            height: 95px;
             border-radius: 50%;
-            background: var(--panel-bg);
+            background: transparent;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             color: var(--text-main);
-            font-weight: 600;
-            font-size: 0.95rem;
-            box-shadow: var(--normal-shadow);
+            font-size: 1rem;
+            position: relative;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 3px solid transparent;
+            z-index: 1;
         }
 
-        /* Active Hover Effect styling */
+        /* Gradient Border Hack Using Pseudoelement */
+        .nav-bubble::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 50%;
+            padding: 4px; /* Border Thickness */
+            background: var(--border-gradient);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+
+        .nav-bubble span:first-child {
+            font-size: 1.3rem;
+            margin-bottom: 2px;
+        }
+
         .nav-bubble:hover {
-            transform: scale(1.15);
-            box-shadow: var(--hover-shadow);
-            background: #fff;
+            transform: scale(1.15) rotate(4deg);
+            color: #b794f4;
+            filter: drop-shadow(0 8px 16px rgba(183, 148, 244, 0.3));
         }
 
-        .nav-bubble.blog-btn:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
-        .nav-bubble.vlogs-btn:hover { border-color: var(--accent-pink); color: var(--accent-pink); }
-        .nav-bubble.photos-btn:hover { border-color: var(--accent-purple); color: var(--accent-purple); }
+        .nav-bubble:hover::before {
+            padding: 6px; /* Thickens border on hover */
+        }
 
-        /* Right Content Dashboard Blocks */
+        /* Dashboard Aggregator Grids */
         .dashboard-grids {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 32px;
             flex-grow: 1;
+        }
+
+        /* Section Typography Labels */
+        .section-block {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            padding-left: 8px;
         }
 
         .grid-row {
@@ -181,7 +172,7 @@
             gap: 20px;
         }
 
-        /* Card Block Generic Styling */
+        /* Card Frame Layout Adjustments */
         .card {
             background: var(--panel-bg);
             border-radius: 30px;
@@ -194,22 +185,23 @@
         }
 
         .card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             box-shadow: var(--hover-shadow);
         }
 
-        /* Video Row Container & Play Button Overlay */
-        .video-card img, .gallery-card img {
+        /* Images and Video Thumbnails styling */
+        .card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .video-card:hover img, .gallery-card:hover img {
-            transform: scale(1.06);
+        .card:hover img {
+            transform: scale(1.05);
         }
 
+        /* Play Button Icon Overlay */
         .play-button {
             position: absolute;
             top: 50%;
@@ -217,12 +209,12 @@
             transform: translate(-50%, -50%);
             width: 65px;
             height: 65px;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -237,19 +229,48 @@
             margin-left: 5px;
         }
 
-        .video-card:hover .play-button {
-            transform: translate(-50%, -50%) scale(1.15);
+        .card:hover .play-button {
+            transform: translate(-50%, -50%) scale(1.1);
             background: #ffffff;
-            box-shadow: 0 8px 20px rgba(99, 179, 237, 0.4);
         }
 
-        /* Mobile Responsive Adjustments */
+        /* Blog Section Formatting */
+        .blog-card {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .blog-tag {
+            align-self: flex-start;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: white;
+            background: var(--border-gradient);
+        }
+
+        .blog-title {
+            font-size: 1.4rem;
+            line-height: 1.3;
+            color: var(--text-main);
+            margin-top: 15px;
+        }
+
+        .blog-footer {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: auto;
+        }
+
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
             body { padding: 12px; }
             .main-content { flex-direction: column; }
             .side-navigation { flex-direction: row; justify-content: center; width: 100%; }
             .grid-row { grid-template-columns: 1fr; }
-            .search-bar { width: 140px; }
         }
     </style>
 </head>
@@ -257,13 +278,9 @@
 
     <div class="window-wrapper">
         
-        <!-- Top Rounded Navigation Header -->
+        <!-- Clean, Simplified Navigation Header -->
         <header class="main-header">
             <div class="logo">Home</div>
-            <div class="header-right">
-                <input type="text" class="search-bar" placeholder="Search...">
-                <div class="profile-bubble">Me</div>
-            </div>
         </header>
 
         <!-- Rounded Sub-Header Anchor -->
@@ -272,41 +289,39 @@
         <!-- App Layout Content Body -->
         <main class="main-content">
             
-            <!-- Left Side Bubble Split Navigation Modules -->
+            <!-- Left Side Transparent Bubble Gradient Navigation -->
             <nav class="side-navigation">
-                <a href="#blog" class="nav-bubble blog-btn">
+                <a href="#blog" class="nav-bubble">
                     <span>📝</span>
                     <span>Blog</span>
                 </a>
-                <a href="#vlogs" class="nav-bubble vlogs-btn">
+                <a href="#vlogs" class="nav-bubble">
                     <span>🎬</span>
                     <span>Vlogs</span>
                 </a>
-                <a href="#photos" class="nav-bubble photos-btn">
+                <a href="#photos" class="nav-bubble">
                     <span>📸</span>
                     <span>Photos</span>
                 </a>
             </nav>
 
-            <!-- Dashboard Dynamic Feed Grid Modules -->
+            <!-- Dashboard Segments -->
             <div class="dashboard-grids">
                 
-                <!-- Video Rows (With Play Buttons) -->
-                <div class="grid-row">
-                    <div class="card video-card">
-                        <img src="https://unsplash.com" alt="Video Thumbnail">
-                        <div class="play-button"></div>
-                    </div>
-                    <div class="card video-card">
-                        <img src="https://unsplash.com" alt="Video Thumbnail">
-                        <div class="play-button"></div>
-                    </div>
-                    <div class="card video-card">
-                        <img src="https://unsplash.com" alt="Video Thumbnail">
-                        <div class="play-button"></div>
-                    </div>
-                </div>
-
-                <!-- Lifestyle Media Image Gallery Row -->
-                <div class="grid-row">
-
+                <!-- Blog Display Section -->
+                <div class="section-block">
+                    <h2 class="section-title">Latest Articles</h2>
+                    <div class="grid-row">
+                        <div class="card blog-card">
+                            <span class="blog-tag">Design</span>
+                            <h3 class="blog-title">Building Bubbly UI Mockups Fast</h3>
+                            <div class="blog-footer">Read Post →</div>
+                        </div>
+                        <div class="card blog-card">
+                            <span class="blog-tag">Trends</span>
+                            <h3 class="blog-title">Why Soft Rounded Edges Feel Better</h3>
+                            <div class="blog-footer">Read Post →</div>
+                        </div>
+                        <div class="card blog-card">
+                            <span class="blog-tag">Tech</span>
+                            <h3 class="blog-title">Custom Gradient Border Secrets</h3>
