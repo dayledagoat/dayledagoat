@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bubbly Modern Landing Page</title>
 
-<!-- Cute & Inviting Fredoka Font Setup -->
-<link href="https://googleapis.com" rel="stylesheet">
+<!-- Fredoka Font Setup -->
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -81,11 +81,13 @@ body{
  transition:.4s;
  box-shadow:0 15px 40px rgba(0,0,0,.08);
  padding: 10px;
+ text-decoration:none;
+ color:inherit;
 }
 .bubble:hover{
  transform:translateY(-8px) scale(1.05);
 }
-.active{
+.bubble.active{
  color:white;
  background:linear-gradient(135deg,#7fd6ff,#ae7fff);
  box-shadow:0 0 40px rgba(160,130,255,.5);
@@ -114,6 +116,8 @@ body{
  height:260px;
  box-shadow:0 20px 50px rgba(0,0,0,.1);
  cursor:pointer;
+ transform-style: preserve-3d;
+ transition:transform .15s ease, box-shadow .15s ease;
 }
 .card img{
  width:100%;
@@ -306,12 +310,12 @@ body{
  <div class="subheader"></div>
  <!-- Main Content Workspace Layout -->
  <div class="main">
- <!-- Sidebar Navigation Buttons -->
+ <!-- Sidebar Navigation Buttons (links to pages + data-tab for SPA toggling) -->
  <div class="sidebar">
- <div class="bubble" data-tab="blog-panel">Blog</div>
- <div class="bubble active" data-tab="vlogs-panel">Vlogs</div>
- <div class="bubble" data-tab="photos-panel">Photos</div>
- <div class="bubble" data-tab="about-panel">About Me</div>
+ <a class="bubble" href="blog.html" data-tab="blog-panel">Blog</a>
+ <a class="bubble active" href="vlogs.html" data-tab="vlogs-panel">Vlogs</a>
+ <a class="bubble" href="photos.html" data-tab="photos-panel">Photos</a>
+ <a class="bubble" href="about.html" data-tab="about-panel">About Me</a>
  </div>
  <!-- Dashboard Media Feeds Wrapper Box -->
  <div class="content">
@@ -319,29 +323,29 @@ body{
  <div id="blog-panel" class="tab-content">
  <div class="gallery">
  <div class="gallery-card">
- <img src="https://unsplash.com" alt="Blog cover picture">
+ <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=1200&q=80&auto=format&fit=crop" alt="Blog cover picture">
  </div>
  <div class="gallery-card">
- <img src="https://unsplash.com" alt="Blog sample illustration">
+ <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80&auto=format&fit=crop" alt="Blog sample illustration">
  </div>
  <div class="gallery-card">
- <img src="https://unsplash.com" alt="Blog setup theme snapshot">
+ <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=1200&q=80&auto=format&fit=crop" alt="Blog setup theme snapshot">
  </div>
  </div>
  </div>
  <!-- 2. Vlogs Panel Section -->
  <div id="vlogs-panel" class="tab-content active-tab">
  <div class="video-row">
- <div class="card" data-video="https://w3schools.com">
- <img src="https://unsplash.com" alt="Video cover thumbnail">
+ <div class="card" data-video="https://www.w3schools.com/html/mov_bbb.mp4">
+ <img src="https://images.unsplash.com/photo-1505685296765-3a2736de412f?w=1200&q=80&auto=format&fit=crop" alt="Video cover thumbnail">
  <div class="play">▶</div>
  </div>
- <div class="card" data-video="https://w3schools.com">
- <img src="https://unsplash.com" alt="Video cover thumbnail">
+ <div class="card" data-video="https://www.w3schools.com/html/mov_bbb.mp4">
+ <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&q=80&auto=format&fit=crop" alt="Video cover thumbnail">
  <div class="play">▶</div>
  </div>
- <div class="card" data-video="https://w3schools.com">
- <img src="https://unsplash.com" alt="Video cover thumbnail">
+ <div class="card" data-video="https://www.w3schools.com/html/mov_bbb.mp4">
+ <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=1200&q=80&auto=format&fit=crop" alt="Video cover thumbnail">
  <div class="play">▶</div>
  </div>
  </div>
@@ -350,13 +354,13 @@ body{
  <div id="photos-panel" class="tab-content">
  <div class="gallery">
  <div class="gallery-card">
- <img src="https://unsplash.com" alt="Gallery item card visual">
+ <img src="https://images.unsplash.com/photo-1504198458649-3128b932f49b?w=1200&q=80&auto=format&fit=crop" alt="Gallery item card visual">
  </div>
  <div class="gallery-card">
- <img src="https://unsplash.com" alt="Gallery item card visual">
+ <img src="https://images.unsplash.com/photo-1492496913980-501348b61469?w=1200&q=80&auto=format&fit=crop" alt="Gallery item card visual">
  </div>
  <div class="gallery-card">
- <img src="https://unsplash.com" alt="Gallery item card visual">
+ <img src="https://images.unsplash.com/photo-1506765515384-028b60a970df?w=1200&q=80&auto=format&fit=crop" alt="Gallery item card visual">
  </div>
  </div>
  </div>
@@ -364,11 +368,11 @@ body{
  <div id="about-panel" class="tab-content">
  <div class="about-card-container">
  <div class="about-avatar-frame">
- <img src="https://unsplash.com" alt="My Portrait Avatar">
+ <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&q=80&auto=format&fit=crop" alt="My Portrait Avatar">
  </div>
  <div class="about-text-frame">
  <h2>Hi there, I'm Alex! ✨</h2>
- <p>Welcome to my creative corner! I love documenting life's cozy moments, recording warm vlogs, and sharing aesthetic frames. This dashboard is my little digital playground to save things that inspire me. Thanks for stopping by!</p>
+ <p>Welcome to my creative corner! I love documenting life's cozy moments, recording warm vlogs, and sharing aesthetic frames. This dashboard is my little digital playground to save things that inspire me and connect with visitors.</p>
  </div>
  </div>
  </div>
@@ -386,61 +390,77 @@ body{
 
 <!-- All Interactivity Logic Script Block Safely at the Bottom -->
 <script>
-// 1. Sidebar selection & content panel filter swapping logic
-const bubbles = document.querySelectorAll(".bubble");
-const tabContents = document.querySelectorAll(".tab-content");
+// Run after DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+ // 1. Sidebar selection & content panel filter swapping logic (keeps SPA behavior if you're on index)
+ const bubbles = document.querySelectorAll(".bubble");
+ const tabContents = document.querySelectorAll(".tab-content");
 
-bubbles.forEach(button => {
- button.addEventListener("click", () => {
+ bubbles.forEach(button => {
+ button.addEventListener("click", (ev) => {
+ const href = button.getAttribute('href');
+ const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+ // If href points to a page different from the current file, allow navigation
+ if (href && (href === currentPath || href === '' || href === '#')) {
+ ev.preventDefault();
  bubbles.forEach(b => b.classList.remove("active"));
  button.classList.add("active");
 
  tabContents.forEach(content => content.classList.remove("active-tab"));
-
- const targetTabId = button.getAttribute("data-tab");
- const activeContentBlock = document.getElementById(targetTabId);
- if (activeContentBlock) {
- activeContentBlock.classList.add("active-tab");
+ const targetTabId = button.getAttribute("data-tab") || button.dataset.tab;
+ const activeContentBlock = targetTabId ? document.getElementById(targetTabId) : null;
+ if (activeContentBlock) activeContentBlock.classList.add("active-tab");
  }
  });
 });
 
 // 2. 3D Card mouse tilting effects
-document.querySelectorAll(".card").forEach(card => {
+const cards = document.querySelectorAll(".card");
+cards.forEach(card => {
  card.addEventListener("mousemove", (e) => {
  const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-const y = e.clientY - rect.top;
-const rotateX = (rect.height / 2 - y) / 10;
-const rotateY = (x - rect.width / 2) / 10;
-card.style.transform = perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px);
+ const x = e.clientX - rect.left;
+ const y = e.clientY - rect.top;
+ const rotateX = (rect.height / 2 - y) / 10;
+ const rotateY = (x - rect.width / 2) / 10;
+ card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+ });
+ card.addEventListener("mouseleave", () => {
+ card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
+ });
 });
-card.addEventListener("mouseleave", () => {
-card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-});
-});
-// 4. Video Modal Popup Execution Logic
-const videoCards = document.querySelectorAll(".card");
+
+// 3. Video Modal Popup Execution Logic
 const modal = document.getElementById("videoModal");
 const modalPlayer = document.getElementById("modalPlayer");
 const closeBtn = document.querySelector(".modal-close");
-videoCards.forEach(card => {
-card.addEventListener("click", () => {
-const videoUrl = card.getAttribute("data-video");
-if (videoUrl) {
-modalPlayer.src = videoUrl;
-modal.classList.add("open");
-modalPlayer.play();
-}
+
+cards.forEach(card => {
+ card.addEventListener("click", (ev) => {
+ // If the card is inside an anchor link, let that navigate; otherwise open modal
+ const videoUrl = card.getAttribute("data-video");
+ if (videoUrl) {
+ ev.preventDefault && ev.preventDefault();
+ modalPlayer.src = videoUrl;
+ modal.classList.add("open");
+ // Click is a user gesture; browsers should allow play but handle errors
+ modalPlayer.play().catch(() => {});
+ }
+ });
 });
-});
+
 function closeModal() {
-modal.classList.remove("open");
-modalPlayer.pause();
-modalPlayer.src = "";
+ modal.classList.remove("open");
+ modalPlayer.pause();
+ modalPlayer.src = "";
 }
 closeBtn.addEventListener("click", closeModal);
 modal.addEventListener("click", (e) => {
-if (e.target === modal) closeModal();
+ if (e.target === modal) closeModal();
 });
- 
+
+});
+</script>
+
+</body>
+</html>
