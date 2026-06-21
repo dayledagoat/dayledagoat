@@ -65,3 +65,33 @@ profile.style.transform =
 
 },16);
 ```
+// 4. Video Modal Popup Logic
+const videoCards = document.querySelectorAll(".card");
+const modal = document.getElementById("videoModal");
+const modalPlayer = document.getElementById("modalPlayer");
+const closeBtn = document.querySelector(".modal-close");
+
+// Open Video when clicking a Card
+videoCards.forEach(card => {
+    card.addEventListener("click", () => {
+        const videoUrl = card.getAttribute("data-video");
+        if (videoUrl) {
+            modalPlayer.src = videoUrl;
+            modal.classList.add("open");
+            modalPlayer.play();
+        }
+    });
+});
+
+// Close Video Function
+function closeModal() {
+    modal.classList.remove("open");
+    modalPlayer.pause();
+    modalPlayer.src = ""; // Resets video load state
+}
+
+// Close events
+closeBtn.addEventListener("click", closeModal);
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal(); // Closes only if background clicked
+});
