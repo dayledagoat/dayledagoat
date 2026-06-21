@@ -1,1 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bubbly Modern Landing Page - Vlogs</title>
+
+<!-- Cute & Inviting Fredoka Font Setup -->
+<link href="https://googleapis.com" rel="stylesheet">
+
+<style>
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+ font-family:'Fredoka', sans-serif;
+}
+body{
+ min-height:100vh;
+ background: linear-gradient(135deg,#fff8ff,#f5f8ff,#fff7f9);
+ padding:30px;
+ overflow-x:hidden;
+}
+.container{
+ max-width:1500px;
+ margin:auto;
+}
+/* HEADER WITH GLASSMORPHISM */
+.header{
+ height:90px;
+ padding:0 35px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ background:rgba(255,255,255,.35);
+ backdrop-filter:blur(25px);
+ border-radius:999px;
+ border:1px solid rgba(255,255,255,.7);
+ box-shadow:
+ inset 0 2px 4px rgba(255,255,255,.9),
+ 0 20px 50px rgba(100,100,255,.08);
+}
+.logo{
+ font-size:2.2rem;
+ font-weight:700;
+ color:#444;
+ text-decoration: none;
+}
+/* SUB HEADER PANEL */
+.subheader{
+ margin-top:20px;
+ height:45px;
+ border-radius:999px;
+ background:rgba(255,255,255,.35);
+ backdrop-filter:blur(20px);
+}
+/* MAIN CONTENT SPLIT */
+.main{
+ display:flex;
+ gap:35px;
+ margin-top:40px;
+}
+/* SIDEBAR BUBBLES */
+.sidebar{
+ display:flex;
+ flex-direction:column;
+ gap:25px;
+}
+.bubble{
+ width:120px;
+ height:120px;
+ border-radius:50%;
+ background:rgba(255,255,255,.35);
+ backdrop-filter:blur(20px);
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ text-align: center;
+ font-size:1.15rem;
+ font-weight:600;
+ cursor:pointer;
+ transition:.4s;
+ box-shadow:0 15px 40px rgba(0,0,0,.08);
+ padding: 10px;
+ text-decoration:none;
+ color:inherit;
+}
+.bubble:hover{
+ transform:translateY(-8px) scale(1.05);
+}
+.bubble.active{
+ color:white;
+ background:linear-gradient(135deg,#7fd6ff,#ae7fff);
+ box-shadow:0 0 40px rgba(160,130,255,.5);
+ transform:scale(1.05);
+}
+.content{
+ flex:1;
+}
+
+/* STATIC VIDEO GRID SYSTEM */
+.video-row{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:25px;
+}
+.card{
+ position:relative;
+ overflow:hidden;
+ border-radius:40px;
+ height:260px;
+ box-shadow:0 20px 50px rgba(0,0,0,.1);
+ cursor:pointer;
+ border: 1px solid rgba(255,255,255,0.4);
+ /* 💡 Stripped 3D transformation properties to lock layout static */
+}
+.card img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ pointer-events: none;
+}
+/* VIDEO PLAY BUTTON Overlay */
+.play{
+ position:absolute;
+ top:50%;
+ left:50%;
+ transform:translate(-50%,-50%);
+ width:90px;
+ height:90px;
+ border-radius:50%;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ background:rgba(255,255,255,.3);
+ backdrop-filter:blur(20px);
+ color:white;
+ font-size:2rem;
+ padding-left: 5px;
+ transition:.3s ease;
+ pointer-events: none;
+}
+/* Clean zoom response only applied to play bubble, card remains static */
+.card:hover .play {
+ transform:translate(-50%,-50%) scale(1.15);
+ box-shadow: 0 0 30px rgba(255,255,255,0.6);
+}
+
+/* MINI-PLAYER POPUP OVERLAY STYLING */
+.modal-overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100vw;
+ height: 100vh;
+ background: rgba(0, 0, 0, 0.6);
+ backdrop-filter: blur(15px);
+ display: flex !important;
+ justify-content: center;
+ align-items: center;
+ z-index: 99999;
+ opacity: 0 !important;
+ pointer-events: none !important;
+ visibility: hidden !important;
+ transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.modal-overlay.open {
+ opacity: 1 !important;
+ pointer-events: auto !important;
+ visibility: visible !important;
+}
+.modal-content {
+ position: relative;
+ width: 90%;
+ max-width: 800px;
+ border-radius: 30px;
+ overflow: hidden;
+ box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+ transform: scale(0.8);
+ transition: transform 0.4s ease;
+}
+.modal-overlay.open .modal-content {
+ transform: scale(1);
+}
+.modal-content video {
+ width: 100%;
+ display: block;
+ background: #000;
+}
+.modal-close {
+ position: absolute;
+ top: 20px;
+ right: 20px;
+ width: 45px;
+ height: 45px;
+ background: rgba(255, 255, 255, 0.2);
+ backdrop-filter: blur(10px);
+ border: 1px solid rgba(255, 255, 255, 0.4);
+ border-radius: 50%;
+ color: white;
+ font-size: 1.8rem;
+ line-height: 40px;
+ cursor: pointer;
+ z-index: 10;
+ transition: 0.3s;
+}
+.modal-close:hover {
+ background: rgba(255, 255, 255, 0.4);
+ transform: rotate(90deg);
+}
+
+/* RESPONSIVE BREAKPOINTS */
+@media(max-width:1000px){
+ .video-row{
+ grid-template-columns:1fr;
+ }
+ .main{
+ flex-direction:column;
+ }
+ .sidebar{
+ flex-direction:row;
+ justify-content: center;
+ }
+ .bubble{
+ width:90px;
+ height:90px;
+ font-size: 0.95rem;
+ }
+}
+</style>
+</head>
+<body>
+<div class="container">
+ <!-- Header Navigation Section -->
+ <a href="vlogs.html" class="header">
+ <div class="logo">Home</div>
+ </a>
+ 
+ <div class="subheader"></div>
+ 
+ <div class="main">
+ <!-- Sidebar Navigation Buttons (Vlogs is Active) -->
+ <div class="sidebar">
+ <a class="bubble" href="blog.html">Blog</a>
+ <a class="bubble active" href="vlogs.html">Vlogs</a>
+ <a class="bubble" href="photos.html">Photos</a>
+ <a class="bubble" href="about.html">About Me</a>
+ </div>
+ 
+ <!-- Dashboard Media Feeds Wrapper Box -->
+ <div class="content">
+ <div class="video-row">
+ 
+ <!-- 💡 Swap the links in data-video with your preferred MP4 files -->
+ <div class="card" data-video="https://w3schools.com">
+ <img src="https://unsplash.com" alt="Video cover thumbnail">
+ <div class="play">▶</div>
+ </div>
+ 
+ <div class="card" data-video="https://w3schools.com">
+ <img src="https://unsplash.com" alt="Video cover thumbnail">
+ <div class="play">▶</div>
+ </div>
+ 
+ <div class="card" data-video="https://w3schools.com">
+ <img src="https://unsplash.com" alt="Video cover thumbnail">
+ <div class="play">▶</div>
+ </div>
+ 
+ </div>
+ </div>
+ </div>
+</div>
+
+<!-- Miniplayer Overlay Container -->
+<div id="videoModal" class="modal-overlay">
+ <div class="modal-content">
+ <button class="modal-close">&times;</button>
+ <video id="modalPlayer" controls></video>
+ </div>
+</div>
+
+<!-- Miniplayer Initialization Logic -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+ const videoCards = document.querySelectorAll(".card");
+ const modal = document.getElementById("videoModal");
+ const modalPlayer = document.getElementById("modalPlayer");
+ const closeBtn = document.querySelector(".modal-close");
+
+ // Open Miniplayer on card click gesture
+ videoCards.forEach(card => {
+ card.addEventListener("click", (ev) => {
+ const videoUrl = card.getAttribute("data-video");
+ if (videoUrl) {
+ ev.preventDefault();
+ modalPlayer.src = videoUrl;
+ modal.classList.add("open");
+ modalPlayer.play().catch(() => {});
+ }
+ });
+ });
+
+ // Close Miniplayer Execution
+ function closeModal() {
+ modal.classList.remove("open");
+ modalPlayer.pause();
+ modalPlayer.src = "";
+ }
+
+ closeBtn.addEventListener("click", closeModal);
+ modal.addEventListener("click", (e) => {
+ if (e.target === modal) closeModal();
+ });
+});
+</script>
+</body>
+</html>
 
