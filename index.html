@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bubbly Modern Landing Page</title>
 
+<!-- Nunito Font -->
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -18,9 +18,9 @@
 
 body{
     min-height:100vh;
-    background:
-    linear-gradient(135deg,#fff8ff,#f5f8ff,#fff7f9);
+    background: linear-gradient(135deg,#fff8ff,#f5f8ff,#fff7f9);
     padding:30px;
+    overflow-x:hidden;
 }
 
 .container{
@@ -28,18 +28,20 @@ body{
     margin:auto;
 }
 
-/* HEADER */
-
+/* HEADER WITH GLASSMORPHISM */
 .header{
     height:90px;
-    background:white;
-    border-radius:60px;
     padding:0 35px;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    background:rgba(255,255,255,.35);
+    backdrop-filter:blur(25px);
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.7);
     box-shadow:
-    0 15px 40px rgba(150,150,255,.12);
+        inset 0 2px 4px rgba(255,255,255,.9),
+        0 20px 50px rgba(100,100,255,.08);
 }
 
 .logo{
@@ -59,41 +61,47 @@ body{
     height:55px;
     border:none;
     outline:none;
-    background:#f7f7ff;
     border-radius:999px;
     padding-left:25px;
+    background:rgba(255,255,255,.4);
+    backdrop-filter:blur(20px);
     font-size:1rem;
 }
 
+/* FLOATING PROFILE WITH PULSE */
 .profile{
-    width:58px;
-    height:58px;
+    width:60px;
+    height:60px;
     border-radius:50%;
-    background:linear-gradient(135deg,#8cc8ff,#c98fff);
-    box-shadow:0 10px 25px rgba(170,120,255,.25);
+    background:linear-gradient(135deg,#7dd8ff,#b97dff);
+    box-shadow:0 0 30px rgba(170,130,255,.4);
     cursor:pointer;
+    animation:pulse 3s infinite alternate;
+}
+
+@keyframes pulse{
+    to{
+        transform:scale(1.1);
+    }
 }
 
 /* SUB HEADER */
-
 .subheader{
     margin-top:20px;
     height:45px;
     border-radius:999px;
-    background:white;
-    box-shadow:0 10px 30px rgba(0,0,0,.06);
+    background:rgba(255,255,255,.35);
+    backdrop-filter:blur(20px);
 }
 
-/* MAIN */
-
+/* MAIN CONTENT SPLIT */
 .main{
     display:flex;
     gap:35px;
     margin-top:40px;
 }
 
-/* SIDE BUBBLES */
-
+/* SIDEBAR BUBBLES */
 .sidebar{
     display:flex;
     flex-direction:column;
@@ -104,38 +112,34 @@ body{
     width:120px;
     height:120px;
     border-radius:50%;
-    background:white;
+    background:rgba(255,255,255,.35);
+    backdrop-filter:blur(20px);
     display:flex;
     justify-content:center;
     align-items:center;
     font-size:1.1rem;
     font-weight:700;
     cursor:pointer;
-    transition:.35s;
-    box-shadow:0 12px 25px rgba(0,0,0,.08);
+    transition:.4s;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
 }
 
 .bubble:hover{
-    transform:translateY(-5px) scale(1.05);
+    transform:translateY(-8px) scale(1.05);
 }
 
 .active{
-    background:linear-gradient(135deg,#7ad6ff,#ae7cff);
     color:white;
-    transform:scale(1.08);
-    box-shadow:
-    0 18px 40px rgba(120,140,255,.4),
-    0 0 30px rgba(150,130,255,.5);
+    background:linear-gradient(135deg,#7fd6ff,#ae7fff);
+    box-shadow:0 0 40px rgba(160,130,255,.5);
+    transform:scale(1.05);
 }
-
-/* CONTENT */
 
 .content{
     flex:1;
 }
 
-/* VIDEO ROW */
-
+/* VIDEO GRID */
 .video-row{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -147,40 +151,44 @@ body{
     overflow:hidden;
     border-radius:40px;
     height:260px;
-    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    box-shadow:0 20px 50px rgba(0,0,0,.1);
+    transition:.3s transform ease; /* Controlled smooth return on mouseleave */
 }
 
 .card img{
     width:100%;
     height:100%;
     object-fit:cover;
+    pointer-events: none; /* Prevents image from blocking cursor math */
 }
 
+/* VIDEO PLAY BUTTON */
 .play{
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    width:80px;
-    height:80px;
+    width:90px;
+    height:90px;
     border-radius:50%;
-    background:rgba(255,255,255,.4);
-    backdrop-filter:blur(10px);
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:2rem;
+    background:rgba(255,255,255,.3);
+    backdrop-filter:blur(20px);
     color:white;
+    font-size:2rem;
     transition:.3s;
+    pointer-events: none; 
 }
 
-.hovered .play{
-    transform:translate(-50%,-50%) scale(1.15);
-    box-shadow:0 0 30px #ffffff;
+/* Modifying your CSS to target hover directly on the card component */
+.card:hover .play {
+    transform:translate(-50%,-50%) scale(1.2);
+    box-shadow: 0 0 30px rgba(255,255,255,0.6);
 }
 
-/* GALLERY */
-
+/* PHOTO GALLERY */
 .gallery{
     margin-top:35px;
     display:grid;
@@ -192,132 +200,155 @@ body{
     height:260px;
     overflow:hidden;
     border-radius:40px;
-    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    box-shadow:0 20px 50px rgba(0,0,0,.1);
+    transition:.3s;
 }
 
 .gallery-card img{
     width:100%;
     height:100%;
     object-fit:cover;
-    transition:.5s;
+    transition:.6s;
 }
 
 .gallery-card:hover img{
-    transform:scale(1.08);
+    transform:scale(1.1);
 }
 
-/* RESPONSIVE */
-
+/* RESPONSIVE LAYOUT BREAKPOINTS */
 @media(max-width:1000px){
-
-.video-row,
-.gallery{
-    grid-template-columns:1fr;
+    .video-row, .gallery{
+        grid-template-columns:1fr;
+    }
+    .main{
+        flex-direction:column;
+    }
+    .sidebar{
+        flex-direction:row;
+    }
+    .bubble{
+        width:90px;
+        height:90px;
+    }
 }
-
-.main{
-    flex-direction:column;
-}
-
-.sidebar{
-    flex-direction:row;
-}
-
-.bubble{
-    width:90px;
-    height:90px;
-}
-}
-
 </style>
 </head>
 <body>
 
 <div class="container">
 
-<div class="header">
-<div class="logo">Home</div>
+    <!-- Header Navigation -->
+    <div class="header">
+        <div class="logo">Home</div>
+        <div class="right-header">
+            <input class="search" placeholder="Search...">
+            <div class="profile"></div>
+        </div>
+    </div>
 
-<div class="right-header">
-<input class="search" placeholder="Search...">
-<div class="profile"></div>
-</div>
-</div>
+    <!-- Accent Subheader -->
+    <div class="subheader"></div>
 
-<div class="subheader"></div>
+    <!-- Main Workspace Layout -->
+    <div class="main">
 
-<div class="main">
+        <!-- Sidebar Navigation Buttons -->
+        <div class="sidebar">
+            <div class="bubble active">Blog</div>
+            <div class="bubble">Vlogs</div>
+            <div class="bubble">Photos</div>
+        </div>
 
-<div class="sidebar">
+        <!-- Dashboard Media Feeds -->
+        <div class="content">
 
-<div class="bubble active">Blog</div>
-<div class="bubble">Vlogs</div>
-<div class="bubble">Photos</div>
+            <!-- Video Row Section -->
+            <div class="video-row">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200" alt="Video cover thumbnail">
+                    <div class="play">▶</div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200" alt="Video cover thumbnail">
+                    <div class="play">▶</div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200" alt="Video cover thumbnail">
+                    <div class="play">▶</div>
+                </div>
+            </div>
 
-</div>
+            <!-- Photo Gallery Section -->
+            <div class="gallery">
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200" alt="Gallery sample thumbnail">
+                </div>
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=1200" alt="Gallery sample thumbnail">
+                </div>
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200" alt="Gallery sample thumbnail">
+                </div>
+            </div>
 
-<div class="content">
-
-<div class="video-row">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200">
-<div class="play">▶</div>
-</div>
-
-<div class="card hovered">
-<img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200">
-<div class="play">▶</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200">
-<div class="play">▶</div>
-</div>
-
-</div>
-
-<div class="gallery">
-
-<div class="gallery-card">
-<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200">
-</div>
-
-<div class="gallery-card">
-<img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=1200">
-</div>
-
-<div class="gallery-card">
-<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200">
-</div>
-
-</div>
-
+        </div>
+    </div>
 </div>
 
-</div>
-
-</div>
-
+<!-- All Interactivity Logic -->
 <script>
+// 1. Sidebar selection toggles
+const bubbles = document.querySelectorAll(".bubble");
 
-document.querySelectorAll(".bubble").forEach(button=>{
-
-button.addEventListener("click",()=>{
-
-document.querySelectorAll(".bubble").forEach(b=>{
-b.classList.remove("active");
+bubbles.forEach(button => {
+    button.addEventListener("click", () => {
+        bubbles.forEach(b => b.classList.remove("active"));
+        button.classList.add("active");
+    });
 });
 
-button.classList.add("active");
+// 2. 3D Card mouse tilting effects
+document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
+        const rotateX = (rect.height / 2 - y) / 10;
+        const rotateY = (x - rect.width / 2) / 10;
+
+        // Keeps your exact original 3D scale and transition mechanics
+        card.style.transform = `
+            perspective(1000px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            translateY(-10px)
+        `;
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+    });
 });
 
-});
+// 3. Automated Floating profile icon loop
+const profile = document.querySelector(".profile");
+let angle = 0;
 
+setInterval(() => {
+    angle += 0.02;
+    profile.style.transform = `translateY(${Math.sin(angle) * 6}px)`;
+}, 16);
 </script>
 
 </body>
 </html>
-<link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
+<!-- Video Popup Modal Component -->
+<div id="videoModal" class="modal-overlay">
+    <div class="modal-content">
+        <!-- Close button (X) -->
+        <button class="modal-close">&times;</button>
+        <!-- The actual video player -->
+        <video id="modalPlayer" controls></video>
+    </div>
+</div>
