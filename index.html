@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bubbly Modern Website</title>
-    <!-- Importing Satoshi Font from a public font CDN -->
-    <link href="https://fontshare.com[]=satoshi@700,900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
@@ -23,8 +21,9 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Satoshi', sans-serif;
-            font-weight: 700;
+            /* Utilizing widespread built-in system fonts to bypass external loading blockers */
+            font-family: 'Satoshi', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 800;
         }
 
         body {
@@ -37,7 +36,6 @@
             align-items: flex-start;
         }
 
-        /* Main Window Layout Wrapper Container */
         .window-wrapper {
             width: 100%;
             max-width: 1200px;
@@ -46,7 +44,6 @@
             gap: 20px;
         }
 
-        /* Top Header Area */
         .main-header {
             background: var(--panel-bg);
             border-radius: 40px;
@@ -65,7 +62,6 @@
             letter-spacing: -0.5px;
         }
 
-        /* Sub-Header Bar Anchor */
         .sub-header {
             background: var(--panel-bg);
             border-radius: 20px;
@@ -75,14 +71,12 @@
             opacity: 0.8;
         }
 
-        /* Main Section Content Wrapper */
         .main-content {
             display: flex;
             gap: 32px;
             width: 100%;
         }
 
-        /* Left Sidebar Sticky Navigation Menu */
         .side-navigation {
             display: flex;
             flex-direction: column;
@@ -91,12 +85,11 @@
             min-width: 110px;
         }
 
-        /* Fixed Stable Transparent Navigation Bubbles */
         .nav-bubble {
             width: 95px;
             height: 95px;
             border-radius: 50%;
-            background: transparent;
+            background: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -104,12 +97,11 @@
             text-decoration: none;
             color: var(--text-main);
             font-size: 1rem;
-            /* Stable standard solid borders to prevent layout engine calculation bugs */
             border: 4px solid var(--accent-purple);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: var(--normal-shadow);
         }
 
-        /* Distinct color border schemes for individual bubbles */
         .nav-bubble.btn-blog { border-color: var(--accent-blue); }
         .nav-bubble.btn-vlogs { border-color: var(--accent-purple); }
         .nav-bubble.btn-photos { border-color: var(--accent-pink); }
@@ -121,11 +113,9 @@
 
         .nav-bubble:hover {
             transform: scale(1.12) rotate(4deg);
-            background: #ffffff;
             box-shadow: var(--hover-shadow);
         }
 
-        /* Right Hand Content Feeds */
         .dashboard-grids {
             display: flex;
             flex-direction: column;
@@ -133,7 +123,6 @@
             flex-grow: 1;
         }
 
-        /* General Segment Block Wrappers */
         .section-block {
             display: flex;
             flex-direction: column;
@@ -154,7 +143,6 @@
             gap: 20px;
         }
 
-        /* Layout Block Component Frameworks */
         .card {
             background: var(--panel-bg);
             border-radius: 30px;
@@ -182,7 +170,6 @@
             transform: scale(1.05);
         }
 
-        /* Overlay Play Triggers */
         .play-button {
             position: absolute;
             top: 50%;
@@ -215,7 +202,6 @@
             background: #ffffff;
         }
 
-        /* Article Block Text Formats */
         .blog-card {
             padding: 30px;
             display: flex;
@@ -246,7 +232,6 @@
             margin-top: auto;
         }
 
-        /* Sound Track Audio Format Blocks */
         .audio-card {
             padding: 24px;
             display: flex;
@@ -342,7 +327,32 @@
             border-color: transparent transparent transparent #ffffff;
         }
 
-        /* Responsive Mobile Layout Breakpoints */
         @media (max-width: 768px) {
             body { padding: 12px; }
             .main-content { flex-direction: column; }
+            .side-navigation { flex-direction: row; justify-content: center; width: 100%; }
+            .grid-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window-wrapper">
+        
+        <header class="main-header">
+            <h1 class="logo">Home</h1>
+        </header>
+
+        <div class="sub-header"></div>
+
+        <main class="main-content">
+            
+            <nav class="side-navigation">
+                <a href="#blog" class="nav-bubble btn-blog">
+                    <span>📝</span>
+                    <span>Blog</span>
+                </a>
+                <a href="#vlogs" class="nav-bubble btn-vlogs">
+                    <span>🎬</span>
+                    <span>Vlogs</span>
+                </a>
