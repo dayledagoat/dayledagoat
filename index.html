@@ -2,10 +2,139 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Creative Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #0f0f11;
+            --card-bg: #1a1a1e;
+            --text-color: #f3f4f6;
+            --accent-color: #3b82f6;
+            --text-muted: #9ca3af;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        
+        /* Header & Socials */
+        header { text-align: center; margin-bottom: 3rem; }
+        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        header p { color: var(--text-muted); font-size: 1.1rem; }
+        .social-links { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; }
+        .social-links a { color: var(--accent-color); text-decoration: none; font-weight: bold; }
+        .social-links a:hover { text-decoration: underline; }
+
+        /* Navigation */
+        nav { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 3rem; border-bottom: 1px solid #2e2e33; padding-bottom: 1rem; }
+        nav a { color: var(--text-color); text-decoration: none; font-weight: 500; }
+        nav a:hover { color: var(--accent-color); }
+
+        /* Sections */
+        section { margin-bottom: 4rem; scroll-margin-top: 2rem; }
+        section h2 { font-size: 1.8rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent-color); padding-left: 0.5rem; }
+        
+        /* Grid Layouts */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .card { background: var(--card-bg); border-radius: 8px; overflow: hidden; padding: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        
+        /* Media Responsiveness */
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 1rem; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 4px; }
+        .photo-gallery img { width: 100%; height: auto; border-radius: 4px; display: block; margin-bottom: 1rem; }
+        .audio-container audio { width: 100%; margin-top: 0.5rem; }
+        
+        /* Blog Styles */
+        .blog-post { margin-bottom: 1.5rem; }
+        .blog-post h3 { font-size: 1.3rem; margin-bottom: 0.25rem; }
+        .blog-date { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem; }
+    </style>
 </head>
 <body>
-    <h1>Hello, I'm [Your Name]</h1>
-    <p>Welcome to my portfolio website!</p>
+
+    <div class="container">
+        <!-- Header -->
+        <header id="home">
+            <h1>Your Name</h1>
+            <p>Video Editor • Photographer • Beat Producer</p>
+            <div class="social-links">
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+                <a href="https://youtube.com" target="_blank">YouTube</a>
+                <a href="https://soundcloud.com" target="_blank">SoundCloud</a>
+            </div>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav>
+            <a href="#video">Video Edits</a>
+            <a href="#photography">Photography</a>
+            <a href="#beats">Beats</a>
+            <a href="#blog">Blog</a>
+        </nav>
+
+        <!-- Video Section -->
+        <section id="video">
+            <h2>Video Edits</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="video-container">
+                        <!-- Replace with your own YouTube embed link -->
+                        <iframe src="https://youtube.com" allowfullscreen></iframe>
+                    </div>
+                    <h3>Project Title 1</h3>
+                    <p style="color: var(--text-muted);">Short description of your edit / software used.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photography Section -->
+        <section id="photography">
+            <h2>Photography</h2>
+            <div class="grid photo-gallery">
+                <div class="card">
+                    <!-- Replace with your actual image URL or paths in github -->
+                    <img src="https://unsplash.com" alt="Sample Photography">
+                    <h3>Street Photography</h3>
+                    <p style="color: var(--text-muted);">Shot on Sony a7III - 35mm.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Beats Section -->
+        <section id="beats">
+            <h2>Beat Production</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Lo-Fi Chill Beat</h3>
+                    <p style="color: var(--text-muted);">Produced in FL Studio / Ableton.</p>
+                    <!-- Replace with your audio file path or SoundCloud link -->
+                    <div class="audio-container">
+                        <audio controls>
+                            <source src="your-beat.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog">
+            <h2>Blog</h2>
+            <div class="card">
+                <div class="blog-post">
+                    <h3>My Creative Process in 2026</h3>
+                    <div class="blog-date">June 21, 2026</div>
+                    <p>This is where you can write a brief breakdown of how you make your beats, edit your videos, or tell stories about your photo shoots.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
 </body>
 </html>
