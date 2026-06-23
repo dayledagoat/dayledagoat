@@ -142,6 +142,17 @@ body{
  justify-content: center;
  gap: 12px;
 }
+ .blog-post-card {
+    /* ... keep your existing card styles here ... */
+    
+    text-decoration: none !important; /* 💡 Add this line to delete the underlines */
+}
+ .blog-post-card h2, 
+.blog-post-card p, 
+.blog-post-card span {
+    text-decoration: none !important;
+    color: inherit; /* Inherits your clean theme styling instead of link blue */
+}
 .blog-badge {
  align-self: flex-start;
  background: linear-gradient(135deg, #7fd6ff, #ae7fff);
