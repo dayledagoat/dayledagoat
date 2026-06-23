@@ -15,6 +15,10 @@
  box-sizing:border-box;
  font-family:'Fredoka', sans-serif;
 }
+a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
 body{
  min-height:100vh;
  background: linear-gradient(135deg,#fff8ff,#f5f8ff,#fff7f9);
@@ -146,12 +150,6 @@ body{
     /* ... keep your existing card styles here ... */
     
     text-decoration: none !important; /* 💡 Add this line to delete the underlines */
-}
-.blog-post-card h2, 
-.blog-post-card p, 
-.blog-post-card span {
-    text-decoration: none !important;
-    color: inherit !important; /* 💡 Added !important to smash browser link colors */
 }
 .blog-badge {
  align-self: flex-start;
