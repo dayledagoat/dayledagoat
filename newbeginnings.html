@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Beginnings- My Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{ margin:0; padding:0; box-sizing:border-box; font-family:'Fredoka', sans-serif; }
+body{ min-height:100vh; background: linear-gradient(135deg,#fff8ff,#f5f8ff,#fff7f9); padding:30px; }
+.container{ max-width:1500px; margin:auto; }
+
+/* HEADER WITH GLASSMORPHISM */
+.header{
+ height:90px; padding:0 35px; display:flex; justify-content:space-between; align-items:center;
+ background:rgba(255,255,255,.35); backdrop-filter:blur(25px); border-radius:999px;
+ border:1px solid rgba(255,255,255,.7); box-shadow: inset 0 2px 4px rgba(255,255,255,.9), 0 20px 50px rgba(100,100,255,.08);
+}
+.logo{ font-size:2.2rem; font-weight:700; color:#444; text-decoration: none; }
+.subheader{ margin-top:20px; height:45px; border-radius:999px; background:rgba(255,255,255,.35); backdrop-filter:blur(20px); }
+.main{ display:flex; gap:35px; margin-top:40px; }
+
+/* SIDEBAR BUBBLES */
+.sidebar{ display:flex; flex-direction:column; gap:25px; }
+.bubble{
+ width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,.35); backdrop-filter:blur(20px);
+ display:flex; justify-content:center; align-items:center; text-align: center; font-size:1.15rem; font-weight:600;
+ cursor:pointer; transition:.4s; box-shadow:0 15px 40px rgba(0,0,0,.08); padding: 10px; text-decoration:none; color:inherit;
+}
+.bubble:hover{ transform:translateY(-8px) scale(1.05); }
+.bubble.active{ color:white; background:linear-gradient(135deg,#7fd6ff,#ae7fff); box-shadow:0 0 40px rgba(160,130,255,.5); transform:scale(1.05); }
+.content{ flex:1; }
+
+/* STATIC ARTICLE CONTAINER DESIGN */
+.article-glass-card {
+ background: rgba(255, 255, 255, 0.4);
+ backdrop-filter: blur(20px);
+ border-radius: 40px;
+ border: 1px solid rgba(255, 255, 255, 0.6);
+ padding: 50px;
+ box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+}
+.article-back-btn {
+ display: inline-block;
+ margin-bottom: 25px;
+ color: #ae7fff;
+ font-weight: 600;
+ text-decoration: none;
+ font-size: 1.1rem;
+}
+.article-back-btn:hover { text-decoration: underline; }
+.article-header-img {
+ width: 100%;
+ height: 400px;
+ object-fit: cover;
+ border-radius: 30px;
+ margin-bottom: 35px;
+ border: 1px solid rgba(255,255,255,0.5);
+}
+.article-title { font-size: 2.5rem; color: #444; font-weight: 700; margin-bottom: 15px; }
+.article-meta { color: #999; font-size: 1rem; margin-bottom: 30px; }
+.article-body-text { font-size: 1.2rem; color: #555; line-height: 1.8; }
+.article-body-text p { margin-bottom: 25px; }
+
+/* Inline Body Images layout */
+.article-inline-img {
+ width: 100%;
+ max-height: 350px;
+ object-fit: cover;
+ border-radius: 25px;
+ margin: 20px 0 35px 0;
+}
+
+@media(max-width:1000px){
+ .main{ flex-direction:column; }
+ .sidebar{ flex-direction:row; justify-content: center; }
+ .bubble{ width:90px; height:90px; font-size: 0.95rem; }
+ .article-glass-card { padding: 30px; }
+ .article-header-img { height: 250px; }
+ .article-title { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+ <!-- Header Navigation Section -->
+ <a href="index.html" class="header"><div class="logo">Home</div></a>
+ <div class="subheader"></div>
+ 
+ <div class="main">
+ <!-- Sidebar Navigation Buttons (Blog continues to stay highlighted) -->
+ <div class="sidebar">
+ <a class="bubble active" href="blog.html">Blog</a>
+ <a class="bubble" href="vlogs.html">Vlogs</a>
+ <a class="bubble" href="photos.html">Photos</a>
+ <a class="bubble" href="about.html">About Me</a>
+ </div>
+ 
+ <!-- Main Text/Image Layout space for Article -->
+ <div class="content">
+ <article class="article-glass-card">
+ <a href="blog.html" class="article-back-btn">← Back to Blog</a>
+ 
+ <h1 class="article-title">My Lightroom Journey</h1>
+ <div class="article-meta">Published on June 21, 2026 by Dayle | Category: Journal</div>
+ 
+ <!-- Main Cover Image -->
+ <img class="article-header-img" src="IMG_0003.jpg" alt="Dayle Bridge">
+ 
+ <div class="article-body-text">
+ <p>lorem ipsum</p>
+ 
+ <p>lorem ipsum</p>
+ 
+ <!-- Secondary Inline Photo Example -->
+ <img class="article-inline-img" src="IMG_0125.jpg" alt="Brooklyn Bridge Diff Angle">
+ 
+ <p>lorem ipsum</p>
+ <p>lorem ipsum</p>
+ </div>
+ </article>
+ </div>
+ </div>
+</div>
+</body>
+</html>
