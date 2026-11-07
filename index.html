@@ -156,6 +156,7 @@ body{
  gap:25px;
 }
 .gallery-card{
+ position:relative;
  height:260px;
  overflow:hidden;
  border-radius:40px;
@@ -170,6 +171,37 @@ body{
 }
 .gallery-card:hover img{
  transform:scale(1.1);
+}
+/* Photo settings overlay: appears on hover or keyboard focus */
+.photo-info{
+ position:absolute;
+ inset:0;
+ display:flex;
+ flex-direction:column;
+ justify-content:flex-end;
+ padding:24px;
+ color:#fff;
+ background:linear-gradient(transparent 20%,rgba(0,0,0,.78));
+ opacity:0;
+ transition:opacity .3s ease;
+ pointer-events:none;
+}
+.photo-info h2{
+ font-size:1.25rem;
+ font-weight:700;
+ margin-bottom:6px;
+}
+.photo-info p{
+ font-size:1rem;
+ line-height:1.5;
+}
+.gallery-card.has-info:hover .photo-info,
+.gallery-card.has-info:focus .photo-info{
+ opacity:1;
+}
+.gallery-card.has-info:focus-visible{
+ outline:3px solid #ae7fff;
+ outline-offset:4px;
 }
 /* ABOUT ME PROFILE SECTION */
 .about-card-container {
@@ -348,9 +380,27 @@ body{
  <img src="images/IZZZZZZZZZZZZZZY.jpg" alt="Video cover thumbnail">
  <div class="play">▶</div>
  </div>
- <div class="gallery-card"><img src="IMG_6757.jpg" alt="New York Oculus"></div>
- <div class="gallery-card"><img src="IMG_6574.jpg" alt="Branch Brook Cherry Blossom"></div>
- <div class="gallery-card"><img src="IMG_6335.jpg" alt="World Trade Center"></div>
+ <div class="gallery-card has-info" tabindex="0">
+  <img src="IMG_6757.jpg" alt="New York Oculus">
+  <div class="photo-info">
+   <h2>Camera settings</h2>
+   <p>f/6.3 · 1/125 sec · ISO 2500</p>
+  </div>
+ </div>
+ <div class="gallery-card has-info" tabindex="0">
+  <img src="IMG_6574.jpg" alt="Branch Brook Cherry Blossom">
+  <div class="photo-info">
+   <h2>Camera settings</h2>
+   <p>f/4 · 1/60 sec · ISO 3200</p>
+  </div>
+ </div>
+ <div class="gallery-card has-info" tabindex="0">
+  <img src="IMG_6335.jpg" alt="World Trade Center">
+  <div class="photo-info">
+   <h2>Camera settings</h2>
+   <p>f/6.3 · 1/250 sec · ISO 400</p>
+  </div>
+ </div>
  </div>
  </div>
  </div>
